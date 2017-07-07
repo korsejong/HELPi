@@ -1,3 +1,262 @@
-extends ../node_modules/pug-bootstrap/_bootstrap
-block body
-	h1 Put your own body content here
+doctype html
+html(lang='en')
+	head
+		meta(charset='utf-8')
+		meta(http-equiv='X-UA-Compatible', content='IE=edge')
+		meta(name='viewport', content='width=device-width, initial-scale=1')
+		meta(name='description', content='')
+		meta(name='author', content='')
+		title HELPi
+		link(href='css/bootstrap.min.css', rel='stylesheet')
+		link(href='css/stylish-portfolio.css', rel='stylesheet')
+		link(href='font-awesome/css/font-awesome.min.css', rel='stylesheet', type='text/css')
+		link(href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic', rel='stylesheet', type='text/css')
+		link(href='stylesheets/style.css', rel='stylesheet' type='text/css')
+		//- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
+		//- WARNING: Respond.js doesn't work if you view the page via file://
+		//-if lt IE 9
+			script(src='https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js')
+			script(src='https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js')
+	body
+		a#menu-toggle.btn.btn-dark.btn-lg.toggle(href='#')
+			i.fa.fa-bars
+		nav#sidebar-wrapper
+			ul.sidebar-nav
+				a#menu-close.btn.btn-light.btn-lg.pull-right.toggle(href='#')
+					i.fa.fa-times
+				li.sidebar-brand
+					a(href='#top', onclick='$("#menu-close").click();') HELPi
+				li
+					a(href='#signin', onclick='$("#menu-close").click();') Start
+				li
+					a(href='#about', onclick='$("#menu-close").click();') About
+				li
+					a(href='#services', onclick='$("#menu-close").click();') Services
+				li
+					a(href='#contact', onclick='$("#menu-close").click();') Contact
+		header#top.header
+			.text-vertical-center
+				h1 Start HELPi
+				h3 Create a design document
+				br
+				a.btn.btn-dark.btn-lg(href='#signin') 시작하기
+		section#signin.header(style="background:url();")
+			.text-vertical-center.loginbackground
+				#regContainer.container
+					.row
+						.col-md-6.col-md-offset-3
+							.panel.panel-login
+								.panel-heading
+									.row
+										.col-xs-6
+											a#login-form-link.active(href='#') Login
+										.col-xs-6
+											a#register-form-link(href='#') Register
+									hr
+								.panel-body
+									.row
+										.col-lg-12
+											form#login-form(action='#', method='post', role='form', style='display: block;')
+												.form-group
+													label(for='username') Username
+													input#username.form-control(type='text', name='username', tabindex='1', placeholder='Username', value='')
+												.form-group
+													label(for='password') Password
+													input#password.form-control(type='password', name='password', tabindex='2', placeholder='Password')
+												.form-group.text-center
+													input#remember(type='checkbox', tabindex='3', name='remember')
+													label(for='remember') &nbsp;Remember Me
+												.form-group
+													.row
+														.col-sm-6.col-sm-offset-3
+															input#login-submit.form-control.btn.btn-login(type='submit', name='login-submit', tabindex='4', value='Log In')
+											form#register-form(action='#', method='post', role='form', style='display: none;')
+												.form-group
+													label(for='username') Username
+													input#username.form-control(type='text', name='username', tabindex='1', placeholder='Username', value='')
+												.form-group
+													label(for='password') Password
+													input#password.form-control(type='password', name='password', tabindex='2', placeholder='Password')
+												.form-group
+													label(for='confirm-password') Confirm password
+													input#confirm-password.form-control(type='password', name='confirm-password', tabindex='2', placeholder='Confirm Password')
+												.form-group
+													.row
+														.col-sm-6.col-sm-offset-3
+															input#register-submit.form-control.btn.btn-register(type='submit', name='register-submit', tabindex='4', value='Register Now')
+		section#about.about
+			.container
+				.row
+					.col-lg-12.text-center
+						h2 Collaborate on your design documents with your team.
+						p.lead
+							| This site is available after you register,  
+							a(href='#signin') Do you want to register?
+							| .
+				img(src='/images/index2.jpg').img-responsive.img-rounded
+		section#services.services.bg-primary
+			.container
+				.row.text-center
+					.col-lg-10.col-lg-offset-1
+						h2 Our Services
+						hr.small
+						.row
+							.col-md-3.col-sm-6
+								.service-item
+									span.fa-stack.fa-4x
+										i.fa.fa-circle.fa-stack-2x
+										i.fa.fa-cloud.fa-stack-1x.text-primary
+									h4
+										strong Service Name
+									p Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+									a.btn.btn-light(href='#') Learn More
+							.col-md-3.col-sm-6
+								.service-item
+									span.fa-stack.fa-4x
+										i.fa.fa-circle.fa-stack-2x
+										i.fa.fa-compass.fa-stack-1x.text-primary
+									h4
+										strong Service Name
+									p Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+									a.btn.btn-light(href='#') Learn More
+							.col-md-3.col-sm-6
+								.service-item
+									span.fa-stack.fa-4x
+										i.fa.fa-circle.fa-stack-2x
+										i.fa.fa-flask.fa-stack-1x.text-primary
+									h4
+										strong Service Name
+									p Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+									a.btn.btn-light(href='#') Learn More
+							.col-md-3.col-sm-6
+								.service-item
+									span.fa-stack.fa-4x
+										i.fa.fa-circle.fa-stack-2x
+										i.fa.fa-shield.fa-stack-1x.text-primary
+									h4
+										strong Service Name
+									p Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+									a.btn.btn-light(href='#') Learn More
+		section#contact.map
+			iframe(width='100%', height='100%', frameborder='0', scrolling='no', marginheight='0', marginwidth='0', src='https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d2734.9365327649084!2d127.07907959511977!3d37.63000971717639!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sko!2skr!4v1499426375572')
+		footer
+			.container
+				.row
+					.col-lg-10.col-lg-offset-1.text-center
+						h4
+							strong HELPi
+						p
+							| Computer Engineering
+							br
+							| Seoul National University of Science and Technology
+						ul.list-unstyled
+							li
+								i.fa.fa-phone.fa-fw
+								|  (010) 9183-0275
+							li
+								i.fa.fa-envelope-o.fa-fw
+								a(href='mailto:sejong.400@gmail.com') sejong.400@gmail.com
+						br
+						ul.list-inline
+							li
+								a(href='#')
+									i.fa.fa-facebook.fa-fw.fa-3x
+							li
+								a(href='#')
+									i.fa.fa-twitter.fa-fw.fa-3x
+							li
+								a(href='#')
+									i.fa.fa-dribbble.fa-fw.fa-3x
+						hr.small
+						p.text-muted Copyright © Your Website 2014
+			a#to-top.btn.btn-dark.btn-lg(href='#top')
+				i.fa.fa-chevron-up.fa-fw.fa-1x
+		script(src='/js/jquery.js')
+		script(src='/js/bootstrap.min.js')
+		script.
+			// Closes the sidebar menu
+			$("#menu-close").click(function(e) {
+				e.preventDefault();
+				$("#sidebar-wrapper").toggleClass("active");
+			});
+			// Opens the sidebar menu
+			$("#menu-toggle").click(function(e) {
+				e.preventDefault();
+				$("#sidebar-wrapper").toggleClass("active");
+			});
+			// Scrolls to the selected menu item on the page
+			$(function() {
+				$('a[href*=#]:not([href=#],[data-toggle],[data-target],[data-slide])').click(function() {
+					if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
+						var target = $(this.hash);
+						target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+						if (target.length) {
+							$('html,body').animate({
+								scrollTop: target.offset().top
+							}, 1000);
+							return false;
+						}
+					}
+				});
+			});
+			//#to-top button appears after scrolling
+			var fixed = false;
+			$(document).scroll(function() {
+				if ($(this).scrollTop() > 250) {
+					if (!fixed) {
+						fixed = true;
+						// $('#to-top').css({position:'fixed', display:'block'});
+						$('#to-top').show("slow", function() {
+							$('#to-top').css({
+								position: 'fixed',
+								display: 'block'
+							});
+						});
+					}
+				} else {
+					if (fixed) {
+						fixed = false;
+						$('#to-top').hide("slow", function() {
+							$('#to-top').css({
+								display: 'none'
+							});
+						});
+					}
+				}
+			});
+			// Disable Google Maps scrolling
+			// See http://stackoverflow.com/a/25904582/1607849
+			// Disable scroll zooming and bind back the click event
+			var onMapMouseleaveHandler = function(event) {
+				var that = $(this);
+				that.on('click', onMapClickHandler);
+				that.off('mouseleave', onMapMouseleaveHandler);
+				that.find('iframe').css("pointer-events", "none");
+			}
+			var onMapClickHandler = function(event) {
+					var that = $(this);
+					// Disable the click handler until the user leaves the map area
+					that.off('click', onMapClickHandler);
+					// Enable scrolling zoom
+					that.find('iframe').css("pointer-events", "auto");
+					// Handle the mouse leave event
+					that.on('mouseleave', onMapMouseleaveHandler);
+				}
+				// Enable map zooming with mouse scroll when the user clicks the map
+			$('.map').on('click', onMapClickHandler);
+			$(function() {
+				$('#login-form-link').click(function(e) {
+					$("#login-form").delay(100).fadeIn(100);
+					$("#register-form").fadeOut(100);
+					$('#register-form-link').removeClass('active');
+					$(this).addClass('active');
+					e.preventDefault();
+				});
+				$('#register-form-link').click(function(e) {
+					$("#register-form").delay(100).fadeIn(100);
+					$("#login-form").fadeOut(100);
+					$('#login-form-link').removeClass('active');
+					$(this).addClass('active');
+					e.preventDefault();
+				});
+			});
