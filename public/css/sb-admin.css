@@ -8,7 +8,7 @@
 
 body {
     margin-top: 100px;
-    background-color: #222;
+    background-color:#FEF3EC;
 }
 
 @media(min-width:768px) {
@@ -57,7 +57,7 @@ body {
     padding-top: 15px;
     padding-bottom: 15px;
     line-height: 20px;
-    color: #999;
+    color: #fe4365;
 }
 
 .top-nav>li>a:hover,
@@ -66,7 +66,7 @@ body {
 .top-nav>.open>a:hover,
 .top-nav>.open>a:focus {
     color: #fff;
-    background-color: #000;
+    background-color: #fe4365;
 }
 
 .top-nav>.open>.dropdown-menu {
@@ -122,7 +122,7 @@ ul.alert-dropdown {
         border: none;
         border-radius: 0;
         overflow-y: auto;
-        background-color: #222;
+        background-color: #FCE8D9;
         bottom: 0;
         overflow-x: hidden;
         padding-bottom: 40px;
@@ -135,7 +135,7 @@ ul.alert-dropdown {
     .side-nav li a:hover,
     .side-nav li a:focus {
         outline: none;
-        background-color: #000 !important;
+        background-color: #fc9d9a !important;
     }
 }
 
@@ -151,7 +151,7 @@ ul.alert-dropdown {
 }
 
 .side-nav>li>ul>li>a:hover {
-    color: #fff;
+    color: #fe4365;
 }
 
 /* Flot Chart Containers */
@@ -224,4 +224,49 @@ ul.alert-dropdown {
 
 .panel-yellow > a:hover {
     color: #df8a13;
+}
+/*top nav color*/
+.navbar-inverse{
+    background-color:#FCE8D9;
+    border-color:#FCE8D9;
+}
+.navbar-inverse .navbar-brand{
+    color:#fe4365;
+}
+/*side nav color*/
+.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover{
+    background-color: #fc9d9a;
+    color:#fff;
+}
+.navbar-inverse .navbar-nav>li>a{
+    color:#fe4365;   
+}
+
+#page-wrapper{
+    background-color:#FEF3EC;
+}
+
+.breadcrumb{
+    background-color:#FCE8D9;
+}
+
+h1{
+    color: #fc9d9a;
+}
+
+.breadcrumb>.active{
+    color:#fe4365;
+}
+/*mini size*/
+.navbar-inverse .navbar-toggle{
+    border-color:#fe4365;
+}
+.navbar-inverse .navbar-toggle:hover{
+    background-color:#fff;
+}
+.navbar-inverse .navbar-toggle:focus{
+    background-color:#fff;
+}
+.navbar-inverse .navbar-toggle .icon-bar{
+    background-color:#fe4365;
 }

@@ -19,14 +19,14 @@ module.exports = function( passport ){
 
     // default local strategy
     passport.use( new LocalStrategy({
-        usernameField: 'id',
-        passwordField: 'pw',
+        usernameField: 'username',
+        passwordField: 'password',
         passReqToCallback: true,
         session: true
     }, function( req, id, pw, done ) {
         //erase null string at head and taile
         var trimStr = id.toString().trim();
-        User.findOne({ user_id: trimStr }, function (err, user) {
+        User.findOne({ username: trimStr }, function (err, user) {
                 //'trimStr' has null string
                 if(trimStr.indexOf(" ") > 0){
                     return done(null, false, req.flash( 'message', '아이디에 공백이 포함 되었습니다.'));

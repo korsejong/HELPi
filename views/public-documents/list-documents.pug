@@ -1,0 +1,20 @@
+extends ../layout/default
+block header
+    - var public = 'active';
+block contents
+    #page-wrapper
+        .container-fluid
+            .row
+                .col-lg-12
+                    h1(style="display:inline-block;").page-header
+                        | Public-Documents
+                    .upload
+                        .dc_up_fl
+                        .dc_up_fd
+            .row
+                .col-lg-12
+                    ol.breadcrumb
+                        li.active
+                            i.fa.fa-users
+                                |  Public
+                        .PublicDocuments

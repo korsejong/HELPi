@@ -56,7 +56,7 @@ html(lang='en')
 								.panel-body
 									.row
 										.col-lg-12
-											form#login-form(action='#', method='post', role='form', style='display: block;')
+											form#login-form(action='/user/signin', method='post', role='form', style='display: block;')
 												.form-group
 													label(for='username') Username
 													input#username.form-control(type='text', name='username', tabindex='1', placeholder='Username', value='')
@@ -70,7 +70,7 @@ html(lang='en')
 													.row
 														.col-sm-6.col-sm-offset-3
 															input#login-submit.form-control.btn.btn-login(type='submit', name='login-submit', tabindex='4', value='Log In')
-											form#register-form(action='#', method='post', role='form', style='display: none;')
+											form#register-form(action='/user/create', method='post', role='form', style='display: none;')
 												.form-group
 													label(for='username') Username
 													input#username.form-control(type='text', name='username', tabindex='1', placeholder='Username', value='')
@@ -107,36 +107,36 @@ html(lang='en')
 										i.fa.fa-circle.fa-stack-2x
 										i.fa.fa-cloud.fa-stack-1x.text-primary
 									h4
-										strong Service Name
-									p Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-									a.btn.btn-light(href='#') Learn More
+										strong Cloud Service
+									p You can upload files to the server and modify them anywhere.
+									//-a.btn.btn-light(href='#') Learn More
 							.col-md-3.col-sm-6
 								.service-item
 									span.fa-stack.fa-4x
 										i.fa.fa-circle.fa-stack-2x
-										i.fa.fa-compass.fa-stack-1x.text-primary
+										i.fa.fa-group.fa-stack-1x.text-primary
 									h4
-										strong Service Name
-									p Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-									a.btn.btn-light(href='#') Learn More
+										strong Group Service
+									p You can create a group with the people you want.
+									//-a.btn.btn-light(href='#') Learn More
 							.col-md-3.col-sm-6
 								.service-item
 									span.fa-stack.fa-4x
 										i.fa.fa-circle.fa-stack-2x
-										i.fa.fa-flask.fa-stack-1x.text-primary
+										i.fa.fa-thumbs-o-up.fa-stack-1x.text-primary
 									h4
-										strong Service Name
-									p Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-									a.btn.btn-light(href='#') Learn More
+										strong Communication
+									p It provides an opportunity to match people.
+									//-a.btn.btn-light(href='#') Learn More
 							.col-md-3.col-sm-6
 								.service-item
 									span.fa-stack.fa-4x
 										i.fa.fa-circle.fa-stack-2x
-										i.fa.fa-shield.fa-stack-1x.text-primary
+										i.fa.fa-pencil.fa-stack-1x.text-primary
 									h4
-										strong Service Name
-									p Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-									a.btn.btn-light(href='#') Learn More
+										strong Design Document
+									p You can easily create difficult designs here.
+									//-a.btn.btn-light(href='#') Learn More
 		section#contact.map
 			iframe(width='100%', height='100%', frameborder='0', scrolling='no', marginheight='0', marginwidth='0', src='https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d2734.9365327649084!2d127.07907959511977!3d37.63000971717639!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sko!2skr!4v1499426375572')
 		footer
@@ -168,7 +168,7 @@ html(lang='en')
 								a(href='#')
 									i.fa.fa-dribbble.fa-fw.fa-3x
 						hr.small
-						p.text-muted Copyright © Your Website 2014
+						p.text-muted Copyright © HELPi 2017
 			a#to-top.btn.btn-dark.btn-lg(href='#top')
 				i.fa.fa-chevron-up.fa-fw.fa-1x
 		script(src='/js/jquery.js')

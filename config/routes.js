@@ -9,6 +9,15 @@ const flash = require("req-flash");
 const session = require('express-session');
 
 const index = require('../routes/index');
+const dashboard = require('../routes/dashboard');
+const privateDocuments = require('../routes/privateDocuments');
+const publicDocuments = require('../routes/publicDocuments');
+const freeboard = require('../routes/freeboard');
+
+const user = require('../controllers/user');
+const document = require('../controllers/document');
+const folder = require('../controllers/folder');
+const freepost = require('../controllers/freepost');
 
 module.exports = function( app,passport ) {
     // view engine setup
@@ -31,8 +40,17 @@ module.exports = function( app,passport ) {
 
     // router
     app.use('/', index);
+    app.use('/dashboard',dashboard);
+    app.use('/privateDocuments',privateDocuments);
+    app.use('/publicDocuments',publicDocuments);
+    app.use('/freeboard',freeboard);
 
-    
+    //controller
+    app.use('/user',user);
+    app.use('/document',document);
+    app.use('/folder',folder);
+    app.use('/freepost',freepost);
+
     // catch 404 and forward to error handler
     app.use(function(req, res, next) {
     let err = new Error('Not Found');
