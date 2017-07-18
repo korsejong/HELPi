@@ -18,11 +18,11 @@ html(lang='en')
 			script(src='https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js')
 			script(src='https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js')
 	body
-		a#menu-toggle.btn.btn-dark.btn-lg.toggle(href='#')
+		a#menu-toggle.btn.btn-pink.btn-lg.toggle(href='#')
 			i.fa.fa-bars
 		nav#sidebar-wrapper
 			ul.sidebar-nav
-				a#menu-close.btn.btn-light.btn-lg.pull-right.toggle(href='#')
+				a#menu-close.btn.pull-right.toggle(href='#' style="color:white;")
 					i.fa.fa-times
 				li.sidebar-brand
 					a(href='#top', onclick='$("#menu-close").click();') HELPi
@@ -36,10 +36,10 @@ html(lang='en')
 					a(href='#contact', onclick='$("#menu-close").click();') Contact
 		header#top.header
 			.text-vertical-center
-				h1 Start HELPi
+				h1 HELPi
 				h3 Create a design document
 				br
-				a.btn.btn-dark.btn-lg(href='#signin') 시작하기
+				a.btn.btn-pink.btn-lg(href='#signin') Start
 		section#signin.header(style="background:url();")
 			.text-vertical-center.loginbackground
 				#regContainer.container
@@ -94,18 +94,18 @@ html(lang='en')
 							a(href='#signin') Do you want to register?
 							| .
 				img(src='/images/index2.jpg').img-responsive.img-rounded
-		section#services.services.bg-primary
+		section#services.services.bg-pink
 			.container
 				.row.text-center
 					.col-lg-10.col-lg-offset-1
 						h2 Our Services
-						hr.small
+						hr(style="border-top:1px solid #222").small
 						.row
 							.col-md-3.col-sm-6
 								.service-item
 									span.fa-stack.fa-4x
 										i.fa.fa-circle.fa-stack-2x
-										i.fa.fa-cloud.fa-stack-1x.text-primary
+										i.fa.fa-cloud.fa-stack-1x.text-white
 									h4
 										strong Cloud Service
 									p You can upload files to the server and modify them anywhere.
@@ -114,7 +114,7 @@ html(lang='en')
 								.service-item
 									span.fa-stack.fa-4x
 										i.fa.fa-circle.fa-stack-2x
-										i.fa.fa-group.fa-stack-1x.text-primary
+										i.fa.fa-group.fa-stack-1x.text-white
 									h4
 										strong Group Service
 									p You can create a group with the people you want.
@@ -123,7 +123,7 @@ html(lang='en')
 								.service-item
 									span.fa-stack.fa-4x
 										i.fa.fa-circle.fa-stack-2x
-										i.fa.fa-thumbs-o-up.fa-stack-1x.text-primary
+										i.fa.fa-thumbs-o-up.fa-stack-1x.text-white
 									h4
 										strong Communication
 									p It provides an opportunity to match people.
@@ -132,7 +132,7 @@ html(lang='en')
 								.service-item
 									span.fa-stack.fa-4x
 										i.fa.fa-circle.fa-stack-2x
-										i.fa.fa-pencil.fa-stack-1x.text-primary
+										i.fa.fa-pencil.fa-stack-1x.text-white
 									h4
 										strong Design Document
 									p You can easily create difficult designs here.
@@ -169,7 +169,8 @@ html(lang='en')
 									i.fa.fa-dribbble.fa-fw.fa-3x
 						hr.small
 						p.text-muted Copyright © HELPi 2017
-			a#to-top.btn.btn-dark.btn-lg(href='#top')
+							<div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+			a#to-top.btn.btn-pink.btn-lg(href='#top')
 				i.fa.fa-chevron-up.fa-fw.fa-1x
 		script(src='/js/jquery.js')
 		script(src='/js/bootstrap.min.js')
@@ -250,6 +251,7 @@ html(lang='en')
 					$("#register-form").fadeOut(100);
 					$('#register-form-link').removeClass('active');
 					$(this).addClass('active');
+					$('#register-form-link').css('color','gray');
 					e.preventDefault();
 				});
 				$('#register-form-link').click(function(e) {
@@ -257,6 +259,7 @@ html(lang='en')
 					$("#login-form").fadeOut(100);
 					$('#login-form-link').removeClass('active');
 					$(this).addClass('active');
+					$('#login-form-link').css('color','gray');
 					e.preventDefault();
 				});
 			});

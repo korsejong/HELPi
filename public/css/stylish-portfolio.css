@@ -57,6 +57,18 @@ body {
     background-color: rgba(255,255,255,0.8);
 }
 
+.btn-pink {
+    border-radius: 0;
+    color: #fff;
+    background-color: rgba(250,100,100,0.4);
+}
+
+.btn-pink:hover,
+.btn-pink:focus,
+.btn-pink:active {
+    color: #fff;
+    background-color: rgba(250,100,100,0.7);
+}
 /* Custom Horizontal Rule */
 
 hr.small {
@@ -68,12 +80,12 @@ hr.small {
 #sidebar-wrapper {
     z-index: 1000;
     position: fixed;
-    right: 0;
+    left: 0px;
     width: 250px;
     height: 100%;
-    transform: translateX(250px);
+    transform: translateX(-250px);
     overflow-y: auto;
-    background: #222;
+    background: #F08080;
     -webkit-transition: all 0.4s ease 0s;
     -moz-transition: all 0.4s ease 0s;
     -ms-transition: all 0.4s ease 0s;
@@ -98,7 +110,7 @@ hr.small {
 .sidebar-nav li a {
     display: block;
     text-decoration: none;
-    color: #999;
+    color: #fff;
 }
 
 .sidebar-nav li a:hover {
@@ -119,7 +131,7 @@ hr.small {
 }
 
 .sidebar-nav > .sidebar-brand a {
-    color: #999;
+    color: #fff;
 }
 
 .sidebar-nav > .sidebar-brand a:hover {
@@ -131,11 +143,11 @@ hr.small {
     z-index: 1;
     position: fixed;
     top: 0;
-    right: 0;
+    left: 0;
 }
 
 #sidebar-wrapper.active {
-    right: 250px;
+    left: 250px;
     width: 250px;
     -webkit-transition: all 0.4s ease 0s;
     -moz-transition: all 0.4s ease 0s;
@@ -145,7 +157,7 @@ hr.small {
 }
 
 .toggle {
-    margin: 5px 5px 0 0;
+    margin: 5px 5px 5px 5px;
 }
 
 /* Header */

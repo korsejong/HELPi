@@ -10,6 +10,7 @@
     margin-top: 3%;  
 }
 .panel-login {
+    height:450px;
     border-color: #ccc;
      background-color: #f9f8f8;
     -webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
@@ -102,8 +103,25 @@
     background-position: 50% 50%;
     background-image: url('https://jointgroup.es/wp-content/uploads/2016/11/joint-network-group.jpg');
     background-repeat:repeat;
-  }
+}
 
+.bg-pink{
+    color: #222;
+    background-color: #fff;
+}
+
+a.bg-pink:hover,
+a.bg-pink:focus {
+  background-color: #FFFAF0;
+}
+
+.text-white {
+  color: #fff;
+}
+a.text-white:hover,
+a.text-white:focus {
+  color: #fff;
+}
 .panel-heading a{
     font-size: 48px;
     color: rgb(233, 205, 202);
@@ -125,35 +143,57 @@
     -webkit-background-clip: text;
 }
 
+.page-header{
+    color:#fe4365;
+}
+
 .dc_fd{
     display:inline-block;
-    background-color:#fc9d9a;
-    background-image: url('/images/icons/folder2.png');
+    background-color:#FCE8D9;
+    background-image: url('/images/icons/folder2-p.png');
     background-repeat: no-repeat;
-    background-position: center center;
+    background-position: 1% center;
     background-size: 30px 30px;
-    width:50px;
+    width:100%;
     height:50px;
-    margin: 10px;
+    margin-bottom: 2px;
 }
-.dc_fd:hover {
-    background-color:#fe4365;
+.dc_fd:hover,
+.dc_fd:focus,
+.dc_fd:active {
+    background-color:#fc9d9a;
+    background-image: url('/images/icons/folder2-w.png');
 }
+
+.dc_fd:hover .f_text,
+.dc_fd:focus .f_text,
+.dc_fd:active .f_text {
+    color: #fff;
+} 
 
 .dc_fl{
     display:inline-block;
-    background-color:#fc9d9a;
-    background-image: url('/images/icons/file.png');
+    background-color:#FCE8D9;
+    background-image: url('/images/icons/file2-p.png');
     background-repeat: no-repeat;
-    background-position: center center;
+    background-position: 1% center;
     background-size: 30px 30px;
-    width:50px;
+    width:100%;
     height:50px;
-    margin: 10px;
+    margin-bottom: 2px;
 }
 
-.dc_fl:hover {
-    background-color:#fe4365;
+.dc_fl:hover,
+.dc_fl:focus,
+.dc_fl:active{
+    background-color:#fc9d9a;
+    background-image: url('/images/icons/file2-w.png');
+}
+
+.dc_fl:hover .f_text,
+.dc_fl:focus .f_text,
+.dc_fl:active .f_text {
+    color: #fff;
 }
 
 .upload {
@@ -162,8 +202,8 @@
 
 .dc_up_fl{
     display:inline-block;
-    background-color:#fc9d9a;
-    background-image: url('/images/icons/new-file.png');
+    background-color:#FCE8D9;
+    background-image: url('/images/icons/file-add-p.png');
     background-repeat: no-repeat;
     background-position: center center;
     background-size: 30px 30px;
@@ -173,14 +213,17 @@
     margin-top: 40px;
 }
 
-.dc_up_fl:hover {
-    background-color:#fe4365;
+.dc_up_fl:hover,
+.dc_up_fl:focus,
+.dc_up_fl:active {
+    background-color:#fc9d9a;
+    background-image: url('/images/icons/file-add-w.png');
 }
 
 .dc_up_fd{
     display:inline-block;
-    background-color:#fc9d9a;
-    background-image: url('/images/icons/new-folder.png');
+    background-color:#FCE8D9;
+    background-image: url('/images/icons/folder-add-p.png');
     background-repeat: no-repeat;
     background-position: center center;
     background-size: 30px 30px;
@@ -190,14 +233,17 @@
     margin-top: 40px; 
 }
 
-.dc_up_fd:hover {
-    background-color:#fe4365;
+.dc_up_fd:hover,
+.dc_up_fd:focus,
+.dc_up_fd:active {
+    background-color:#fc9d9a;
+    background-image: url('/images/icons/folder-add-w.png');
 }
 
 .pt_new {
     display:inline-block;
-    background-color:#fc9d9a;
-    background-image: url('/images/icons/new-post.png');
+    background-color:#FCE8D9;
+    background-image: url('/images/icons/filew-p.png');
     background-repeat: no-repeat;
     background-position: center center;
     background-size: 30px 30px;
@@ -207,6 +253,35 @@
     margin-top: 40px; 
 }
 
-.pt_new:hover {
-    background-color:#fe4365;
+.pt_new:hover,
+.pt_new:focus,
+.pt_new:active {
+    background-color:#fc9d9a;
+    background-image: url('/images/icons/filew-w.png');
+}
+
+.f_text {
+    position:relative;
+    left:60px;
+    top:15px;
+    margin: 0 auto;
+    color: #fe4365;
+}
+.dc_tools{
+    position:fixed;
+    left:0;
+    height:75px;
+    width:100%;
+    z-index:10;
+    background-color:#FCE8D9;
+}
+.dc_contents{
+    position:absolute;
+    left:20%;
+    top:125px;
+    width:60%;
+    height:100%;
+    margin: 5px;
+    z-index:5;
+    background-color:#fff;
 }

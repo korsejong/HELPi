@@ -126,6 +126,7 @@ ul.alert-dropdown {
         bottom: 0;
         overflow-x: hidden;
         padding-bottom: 40px;
+        opacity: 0.8;
     }
 
     .side-nav>li>a {
@@ -232,6 +233,11 @@ ul.alert-dropdown {
 }
 .navbar-inverse .navbar-brand{
     color:#fe4365;
+}
+.navbar-inverse .navbar-brand:hover,
+.navbar-inverse .navbar-brand:focus {
+  color: #fe4365;
+  background-color: transparent;
 }
 /*side nav color*/
 .navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover{

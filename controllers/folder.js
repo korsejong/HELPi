@@ -10,6 +10,9 @@ const Folder = require("../models/folder");
 
 router.post('/create', async(function*(req,res){
     let folder = new Folder({
+        foldername: req.body.foldername,
+        type: req.body.type,
+        owner: req.user
     });
     try{
         yield folder.save();

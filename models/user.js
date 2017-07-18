@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const Folder = require('./folder');
+const Document = require('./document');
 //Encryption module
 const crypto = require('crypto');
 const Schema = mongoose.Schema;
@@ -8,6 +10,11 @@ const userSchema = new Schema({
     username : { type : String , required : true, unique : true },
     //User Password
     password : { type : String , required : true },
+    //User Docs,Files
+    contents:{
+        documents:[{type: Schema.Types.ObjectId, ref: 'Document'}],
+        folders:[{type: Schema.Types.ObjectId, ref: 'Folder'}]
+    },
     //Encryption
     salt :{type :String, default:null}
 });

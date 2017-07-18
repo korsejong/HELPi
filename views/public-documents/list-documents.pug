@@ -9,12 +9,33 @@ block contents
                     h1(style="display:inline-block;").page-header
                         | Public-Documents
                     .upload
-                        .dc_up_fl
-                        .dc_up_fd
+                        a(href='/publicDocuments/create' target="_blank")
+                            .dc_up_fl
+                        a(data-toggle="modal" href="#createFolderModal")
+                            .dc_up_fd    
             .row
                 .col-lg-12
                     ol.breadcrumb
                         li.active
                             i.fa.fa-users
                                 |  Public
-                        .PublicDocuments
+                    .PublicDocuments
+                        each folder in folders
+                            .dc_fd
+                                span.f_text=folder.foldername
+                        each document in documents
+                            .dc_fl
+                                span.f_text=document.documentname
+    div(role="dialog").modal.fade#createFolderModal
+        .modal-dialog
+            .modal-content
+                form(action="/folder/create" method="post")
+                    .modal-header
+                        button(data-dismiss="modal").close &times;
+                        h4.modal-title Create Folder
+                    .modal-body
+                        input(type="text" name="foldername" placeholder="Enter Folder Name").form-control
+                        input(type="hidden" name="type" value="public")
+                    .modal-footer
+                        input(type="submit" value="Create").btn.btn-default
+                        button(data-dismiss="modal").btn.btn-default Close
