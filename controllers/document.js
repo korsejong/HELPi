@@ -8,15 +8,17 @@ const Document = require("../models/document");
 
 router.post('/create', async(function*(req,res){
     let document = new Document({
+        owner : req.user,
+        type : req.body.type,
+        documentname : req.body.documentname
     });
     try{
         yield document.save();
-        res.redirect('back');
+        res.redirect('/privateDocuments/view/'+document.id);
     }catch(err){
         console.log(err);
         res.redirect('back');
     }
 }));
-
 
 module.exports = router;

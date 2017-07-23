@@ -9,7 +9,7 @@ block contents
                     h1(style="display:inline-block;").page-header
                         | Private-Documents
                     .upload
-                        a(href='/privateDocuments/create' target="_blank")
+                        a(data-toggle="modal" href="#createDocumentModal")
                             .dc_up_fl
                         a(data-toggle="modal" href="#createFolderModal")
                             .dc_up_fd    
@@ -24,8 +24,9 @@ block contents
                             .dc_fd
                                 span.f_text=folder.foldername
                         each document in documents
-                            .dc_fl
-                                span.f_text=document.documentname
+                            a(href='/privateDocuments/view/'+document.id target="_blank")
+                                .dc_fl
+                                    span.f_text=document.documentname
     div(role="dialog").modal.fade#createFolderModal
         .modal-dialog
             .modal-content
@@ -35,6 +36,19 @@ block contents
                         h4.modal-title Create Folder
                     .modal-body
                         input(type="text" name="foldername" placeholder="Enter Folder Name").form-control
+                        input(type="hidden" name="type" value="private")
+                    .modal-footer
+                        input(type="submit" value="Create").btn.btn-default
+                        button(data-dismiss="modal").btn.btn-default Close
+    div(role="dialog").modal.fade#createDocumentModal
+        .modal-dialog
+            .modal-content
+                form(action="/document/create" method="post" target="_blank")
+                    .modal-header
+                        button(data-dismiss="modal").close &times;
+                        h4.modal-title Create Document
+                    .modal-body
+                        input(type="text" name="documentname" placeholder="Enter Document Name").form-control
                         input(type="hidden" name="type" value="private")
                     .modal-footer
                         input(type="submit" value="Create").btn.btn-default

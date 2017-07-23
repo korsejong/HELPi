@@ -19,9 +19,9 @@ router.get('/', async(function*(req, res){
 }));
 
 router.get('/create', (req, res) => {
-  res.render('documents/create', { 
+  res.render('documents/create', {
     title: 'HELPi',
-    user: req.user, 
+    user: req.user,
   });
 });
 

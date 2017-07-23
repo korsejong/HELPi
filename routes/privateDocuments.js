@@ -3,13 +3,14 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const { wrap: async } = require('co');
 
-const Documents = require("../models/document");
+const Document = require("../models/document");
 const Folder = require("../models/folder");
 const User = require("../models/user");
 
 router.get('/', async(function*(req, res){
   folders = yield Folder.find({owner:req.user});
-  documents = yield Documents.find({owner:req.user});
+  documents = yield Document.find({owner:req.user});
+
   res.render('private-documents/list-documents', { 
     title: 'HELPi',
     user: req.user,
@@ -18,11 +19,13 @@ router.get('/', async(function*(req, res){
   });
 }));
 
-router.get('/create', (req, res) => {
-  res.render('documents/create', { 
+router.get('/view/:id', async(function*(req, res){
+  let document = yield Document.findById(req.params.id);
+  res.render('documents/view',{
     title: 'HELPi',
-    user: req.user, 
-  });
-});
+    user: req.user,
+    document: document,
+  })
+}));
 
 module.exports = router;
