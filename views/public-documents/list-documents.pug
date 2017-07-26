@@ -2,6 +2,7 @@ extends ../layout/default
 block header
     - var public = 'active';
 block contents
+    - var curPath = cur ? cur.id : '/';
     #page-wrapper
         .container-fluid
             .row
@@ -20,11 +21,20 @@ block contents
                             i.fa.fa-users
                                 |  Public
                     .PublicDocuments
+                        - if(curPath != '/' && cur.parent)
+                            a(href="/publicDocuments/"+cur.parent.id)
+                                .dc_fd
+                                    span.f_text ../
+                        - else if(curPath != '/')
+                            a(href="/publicDocuments/")
+                                .dc_fd
+                                    span.f_text ../
                         each folder in folders
-                            .dc_fd
-                                span.f_text=folder.foldername
+                            a(href="/publicDocuments/"+folder.id)
+                                .dc_fd
+                                    span.f_text=folder.foldername
                         each document in documents
-                            a(href='/privateDocuments/view/' + document.id target="_blank")
+                            a(href='/publicDocuments/view/' + document.id target="_blank")
                                 .dc_fl
                                     span.f_text=document.documentname
     div(role="dialog").modal.fade#createFolderModal
@@ -37,6 +47,7 @@ block contents
                     .modal-body
                         input(type="text" name="foldername" placeholder="Enter Folder Name").form-control
                         input(type="hidden" name="type" value="public")
+                        input(type="hidden" name="path" value=curPath)
                     .modal-footer
                         input(type="submit" value="Create").btn.btn-default
                         button(data-dismiss="modal").btn.btn-default Close
@@ -50,6 +61,7 @@ block contents
                     .modal-body
                         input(type="text" name="documentname" placeholder="Enter Document Name").form-control
                         input(type="hidden" name="type" value="public")
+                        input(type="hidden" name="path" value=curPath)
                     .modal-footer
                         input(type="submit" value="Create").btn.btn-default
                         button(data-dismiss="modal").btn.btn-default Close

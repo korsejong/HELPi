@@ -9,8 +9,16 @@ const documentSchema = new Schema({
     owner : {type: Schema.Types.ObjectId, ref: 'User'},
     partner : [{type: Schema.Types.ObjectId, ref: 'User'}],
     parent: {type: Schema.Types.ObjectId, ref: 'Folder'},
-    contents : String
+    path: String,
 });
 documentSchema.methods = {
+}
+documentSchema.statics = {
+    privateList(user,path){
+        return this.find({$and:[{owner:user},{path:path},{type:'private'}]})
+    },
+    publicList(user,path){
+        return this.find({$and:[{owner:user},{path:path},{type:'public'}]})
+    }
 }
 module.exports = mongoose.model( 'Document',documentSchema);

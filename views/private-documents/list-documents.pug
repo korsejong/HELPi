@@ -2,6 +2,7 @@ extends ../layout/default
 block header
     - var private = 'active';
 block contents
+    - var curPath = cur ? cur.id : '/';
     #page-wrapper
         .container-fluid
             .row
@@ -20,9 +21,18 @@ block contents
                             i.fa.fa-user
                                 |  Private
                     .PrivateDocuments
+                        - if(curPath != '/' && cur.parent)
+                            a(href="/privateDocuments/"+cur.parent.id)
+                                .dc_fd
+                                    span.f_text ../
+                        - else if(curPath != '/')
+                            a(href="/privateDocuments/")
+                                .dc_fd
+                                    span.f_text ../
                         each folder in folders
-                            .dc_fd
-                                span.f_text=folder.foldername
+                            a(href="/privateDocuments/"+folder.id)
+                                .dc_fd
+                                    span.f_text=folder.foldername
                         each document in documents
                             a(href='/privateDocuments/view/'+document.id target="_blank")
                                 .dc_fl
@@ -37,6 +47,7 @@ block contents
                     .modal-body
                         input(type="text" name="foldername" placeholder="Enter Folder Name").form-control
                         input(type="hidden" name="type" value="private")
+                        input(type="hidden" name="path" value=curPath)
                     .modal-footer
                         input(type="submit" value="Create").btn.btn-default
                         button(data-dismiss="modal").btn.btn-default Close
@@ -50,6 +61,7 @@ block contents
                     .modal-body
                         input(type="text" name="documentname" placeholder="Enter Document Name").form-control
                         input(type="hidden" name="type" value="private")
+                        input(type="hidden" name="path" value=curPath)
                     .modal-footer
                         input(type="submit" value="Create").btn.btn-default
                         button(data-dismiss="modal").btn.btn-default Close

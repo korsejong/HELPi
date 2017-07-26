@@ -12,8 +12,17 @@ const folderSchema = new Schema({
     contents: {
         documents: [{type: Schema.Types.ObjectId, ref: 'Document'}],
         folders: [{type: Schema.Types.ObjectId, ref: 'Folder'}]
-    }
+    },
+    path: String
 });
 folderSchema.methods = {
+}
+folderSchema.statics = {
+    privateList(user,path){
+        return this.find({$and:[{owner:user},{path:path},{type:'private'}]})
+    },
+    publicList(user,path){
+        return this.find({$and:[{owner:user},{path:path},{type:'public'}]})
+    }
 }
 module.exports = mongoose.model( 'Folder',folderSchema);
