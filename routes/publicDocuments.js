@@ -8,8 +8,8 @@ const Folder = require("../models/folder");
 const User = require("../models/user");
 
 router.get('/', async(function*(req, res){
-  folders = yield Folder.publicList(req.user,'/');
-  documents = yield Document.publicList(req.user,'/');
+  let folders = yield Folder.publicList(req.user,'/');
+  let documents = yield Document.publicList(req.user,'/');
   res.render('public-documents/list-documents', { 
     title: 'HELPi',
     user: req.user,
@@ -19,15 +19,15 @@ router.get('/', async(function*(req, res){
 }));
 
 router.get('/:id', async(function*(req, res){
-  curPath = yield Folder.findById(req.params.id).populate('parent');
-  folders = yield Folder.publicList(req.user,req.params.id);
-  documents = yield Document.publicList(req.user,req.params.id);
+  let curPath = yield Folder.findById(req.params.id).populate('parent');
+  let folders = yield Folder.publicList(req.user,req.params.id);
+  let documents = yield Document.publicList(req.user,req.params.id);
   res.render('public-documents/list-documents', { 
     title: 'HELPi',
     user: req.user,
     folders: folders,
     documents: documents,
-    cur: curPath
+    cur: curPath,
   });
 }));
 
@@ -37,7 +37,6 @@ router.get('/view/:id', async(function*(req, res){
     title: 'HELPi',
     user: req.user,
     document: document,
-    curPath: curPath,
   })
 }));
 

@@ -150,10 +150,10 @@ a.text-white:focus {
 .dc_fd{
     display:inline-block;
     background-color:#FCE8D9;
-    background-image: url('/images/icons/folder2-p.png');
+    /* background-image: url('/images/icons/folder2-p.png');
     background-repeat: no-repeat;
     background-position: 1% center;
-    background-size: 30px 30px;
+    background-size: 30px 30px; */
     width:100%;
     height:50px;
     margin-bottom: 2px;
@@ -162,22 +162,22 @@ a.text-white:focus {
 .dc_fd:focus,
 .dc_fd:active {
     background-color:#fc9d9a;
-    background-image: url('/images/icons/folder2-w.png');
+    /* background-image: url('/images/icons/folder2-w.png'); */
 }
 
 .dc_fd:hover .f_text,
 .dc_fd:focus .f_text,
 .dc_fd:active .f_text {
-    color: #fff;
+    color: #FCEFFF;
 } 
 
 .dc_fl{
     display:inline-block;
     background-color:#FCE8D9;
-    background-image: url('/images/icons/file2-p.png');
+    /* background-image: url('/images/icons/file2-p.png');
     background-repeat: no-repeat;
     background-position: 1% center;
-    background-size: 30px 30px;
+    background-size: 30px 30px; */
     width:100%;
     height:50px;
     margin-bottom: 2px;
@@ -187,13 +187,13 @@ a.text-white:focus {
 .dc_fl:focus,
 .dc_fl:active{
     background-color:#fc9d9a;
-    background-image: url('/images/icons/file2-w.png');
+    /* background-image: url('/images/icons/file2-w.png'); */
 }
 
 .dc_fl:hover .f_text,
 .dc_fl:focus .f_text,
 .dc_fl:active .f_text {
-    color: #fff;
+    color: #FCEFFF;
 }
 
 .upload {
@@ -242,8 +242,6 @@ a.text-white:focus {
 
 .pt_new {
     display:inline-block;
-    background-color:#FCE8D9;
-    background-image: url('/images/icons/filew-p.png');
     background-repeat: no-repeat;
     background-position: center center;
     background-size: 30px 30px;
@@ -251,21 +249,23 @@ a.text-white:focus {
     height:50px;
     margin: 10px;  
     margin-top: 40px; 
+    font-size:50px;
+    color:#fc9d9a;
 }
 
 .pt_new:hover,
 .pt_new:focus,
 .pt_new:active {
-    background-color:#fc9d9a;
-    background-image: url('/images/icons/filew-w.png');
+    color:#fe4365;
 }
 
 .f_text {
     position:relative;
-    left:60px;
+    left:15px;
     top:15px;
     margin: 0 auto;
     color: #fe4365;
+    font-size: 15px;
 }
 .dc_tools{
     position:fixed;
@@ -284,4 +284,24 @@ a.text-white:focus {
     margin: 5px;
     z-index:5;
     background-color:#fff;
+}
+.dc_setting{
+    position:absolute;
+    color: #fe4365; 
+    right:45px;
+    display:inline-block;
+}
+.boxshadow{
+    box-shadow: 0 3px 5px -1px rgba(0,0,0,.1), 0 6px 10px 0 rgba(0,0,0,.1), 0 1px 18px 0 rgba(0,0,0,.12);
+}
+.faiconsize{
+    font-size: 15px;
+}
+.postleft{
+    margin-top: 20px;
+}
+.postright{
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 10%;
 }

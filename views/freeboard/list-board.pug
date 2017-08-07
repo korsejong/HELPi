@@ -2,6 +2,21 @@ extends ../layout/default
 block header
     - var freeboard = 'active';
 block contents
+    div(role="dialog").modal.fade#createPost
+        .modal-dialog
+            .modal-content
+                .modal-header
+                    button(data-dismiss="modal").close &times;
+                    h4.modal-title Post
+                form(action="freepost/create" method="post")
+                    .modal-body
+                        label Title
+                        input(type="text" name="title" placeholder="Title").form-control
+                        label Contents
+                        textarea(name="contents" rows="20" style="resize: none;").form-control
+                    .modal-footer
+                        input(type="submit" value="Submit").btn.btn-default
+                        button(data-dismiss="modal").btn.btn-default Close
     #page-wrapper
         .container-fluid
             .row
@@ -9,11 +24,19 @@ block contents
                     h1(style="display:inline-block").page-header
                         | Freeboard
                     .upload
-                        .pt_new
+                        a(data-toggle="modal" href="#createPost")
+                            .pt_new
+                                i.fa.fa-edit
             .row
                 .col-lg-12
                     ol.breadcrumb
                         li.active
-                            i.fa.fa-list
+                            i.fa.fa-edit
                                 |  Freeboard
                         .PublicDocuments
+                            each post in posts
+                                .col-lg-1.postleft
+                                    label=post.writer.username
+                                .col-lg-9.postright
+                                    label=post.title
+                                    textarea(readonly="readonly" rows="6" style="resize: none;").form-control=post.contents

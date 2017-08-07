@@ -1,0 +1,85 @@
+mixin list(type,folders,documents)
+    div(role="dialog").modal.fade#settingFolderModal
+        .modal-dialog
+            .modal-content
+                form(action="/folder/update" method="post")
+                    input(type="hidden" name="fdid").fdid
+                    .modal-header
+                        button(data-dismiss="modal").close &times;
+                        h4.modal-title Settings
+                    .modal-body
+                        label Folder Name
+                        input(type="text" name="foldername" placeholder="Enter Folder Name").form-control.fdname
+                        hr
+                        label Add Users to share
+                        input(type="text" name="user" placeholder="Enter User ID").form-control
+                    .modal-footer
+                        input(type="submit" value="Submit").btn.btn-default
+                        button(data-dismiss="modal").btn.btn-default Close
+    div(role="dialog").modal.fade#settingDocumentModal
+        .modal-dialog
+            .modal-content
+                form(action="/document/update/" method="post")
+                    input(type="hidden" name="dcid").dcid
+                    .modal-header
+                        button(data-dismiss="modal").close &times;
+                        h4.modal-title Settings
+                    .modal-body
+                        label Document Name
+                        input(type="text" name="documentname" placeholder="Enter Document Name").form-control.dcname
+                        hr
+                        label Add Users to share
+                        input(type="text" name="user" placeholder="Enter User ID").form-control
+                    .modal-footer
+                        input(type="submit" value="Submit").btn.btn-default
+                        button(data-dismiss="modal").btn.btn-default Close
+    - if(curPath != '/' && cur.parent)
+        a(href='/'+type+'Documents/'+cur.parent.id)
+            .dc_fd
+                i.fa.fa-folder.f_text
+                | 
+                span.f_text ../
+    - else if(curPath != '/')
+        a(href='/'+type+'Documents/')
+            .dc_fd
+                i.fa.fa-folder.f_text
+                | 
+                span.f_text ../
+    each folder in folders
+        a(href='/'+type+'Documents/'+folder.id)
+            .dc_fd
+                i.fa.fa-folder.f_text
+                | 
+                span.f_text #{folder.foldername}
+        .dc_setting
+            a(data-toggle="modal" href="#settingFolderModal" data-fd-id=folder.id data-fd-name=folder.foldername)
+                i.fa.fa-gear.f_text.faiconsize
+                |  
+            a(href="/folder/delete/"+folder.id onclick="if(confirm('삭제하시겠습니까?')==false){return false;}")
+                i.fa.fa-trash.f_text.faiconsize
+    each document in documents
+        a(href='/'+type+'Documents/view/'+document.id target="_blank")
+            .dc_fl
+                i.fa.fa-file.f_text
+                | 
+                span.f_text #{document.documentname}
+        .dc_setting
+            a(data-toggle="modal" href="#settingDocumentModal" data-dc-id=document.id data-dc-name=document.documentname)
+                i.fa.fa-gear.f_text.faiconsize
+                |  
+            a(href="/document/delete/"+document.id onclick="if(confirm('삭제하시겠습니까?')==false){return false;}")
+                i.fa.fa-trash.f_text.faiconsize
+    //- script(src='/js/jquery.js')
+    //- script.
+    //-     $('#settingDocumentModal').on('show.bs.modal', function(e) {
+    //-         var modal = $(this);
+    //-         modal.find('.test').val("test");
+    //-         var id = $(e.relatedTarget).data('dc-id');
+    //-         modal.find('.dcid').val(id);
+    //-     });
+    //-     $('#settingFolderModal').on('show.bs.modal', function(e) {
+    //-         //get data-id attribute of the clicked element
+    //-         var id = $(e.relatedTarget).data('fd-id');
+    //-         //populate the textbox
+    //-         $(e.currentTarget).find('input[name="fdid"]').val(id);
+    //-     });

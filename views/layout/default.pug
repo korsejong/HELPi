@@ -29,7 +29,7 @@ html(lang='en')
             - var fredboard = freeboard || '';
         block body
             #wrapper
-                nav.navbar.navbar-inverse.navbar-fixed-top(role='navigation')
+                nav.navbar.navbar-inverse.navbar-fixed-top.boxshadow(role='navigation')
                     .navbar-header
                         button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-ex1-collapse')
                             span.sr-only Toggle navigation
@@ -142,9 +142,24 @@ html(lang='en')
                                             |  Log Out
                     .collapse.navbar-collapse.navbar-ex1-collapse
                         ul.nav.navbar-nav.side-nav
+                            li
+                                a(href='javascript:;', data-toggle='collapse', data-target='#demo')
+                                    i.fa.fa-fw.fa-plus
+                                    |  New Item 
+                                    i.fa.fa-fw.fa-caret-down
+                                ul#demo.collapse
+                                    li
+                                        a(data-toggle="modal" href="#createFolderModal")
+                                            i.fa.fa-fw.fa-folder
+                                            |  Create Folder
+                                    li
+                                        a(data-toggle="modal" href="#createDocumentModal")
+                                            i.fa.fa-fw.fa-file
+                                            |  Create Docuement
+                            li &nbsp;
                             li(class=dashboard)
                                 a(href='/dashboard')
-                                    i.fa.fa-fw.fa-dashboard
+                                    i.fa.fa-fw.fa-list-ul
                                     |  Dashboard
                             li(class=private)
                                 a(href='/privateDocuments')
@@ -158,6 +173,72 @@ html(lang='en')
                                 a(href='/freeboard')
                                     i.fa.fa-fw.fa-edit
                                     |  Freeboard
+                            li(style="position:absolute;bottom:0;")
+                                a(data-toggle="modal" href="#searchUser")
+                                    i.fa.fa-fw.fa-search
+                                    |  Search User
+                div(role="dialog").modal.fade#createFolderModal
+                    .modal-dialog
+                        .modal-content
+                            form(action="/folder/create" method="post")
+                                .modal-header
+                                    button(data-dismiss="modal").close &times;
+                                    h4.modal-title Create Folder
+                                .modal-body
+                                    label Folder Name
+                                    input(type="text" name="foldername" placeholder="Enter Folder Name").form-control
+                                    input(type="hidden" name="type" value="private")
+                                    input(type="hidden" name="path" value=curPath)
+                                .modal-footer
+                                    input(type="submit" value="Create").btn.btn-default
+                                    button(data-dismiss="modal").btn.btn-default Close
+                div(role="dialog").modal.fade#createDocumentModal
+                    .modal-dialog
+                        .modal-content
+                            form(action="/document/create" method="post" target="_blank")
+                                .modal-header
+                                    button(data-dismiss="modal").close &times;
+                                    h4.modal-title Create Document
+                                .modal-body
+                                    label Document Name
+                                    input(type="text" name="documentname" placeholder="Enter Document Name").form-control
+                                    input(type="hidden" name="type" value="private")
+                                    input(type="hidden" name="path" value=curPath)
+                                    hr
+                                    label Document Form
+                                    - var n = 0;
+                                    - var options = ['없음','Mind Map','One Page Proposal','Requirement Document','Design Document','Test Case','User Manual','Final Presentation']
+                                    select(name="docoption").form-control
+                                        - while(n<8)
+                                            option(value=n)=options[n]
+                                            - n++
+                                .modal-footer
+                                    input(type="submit" value="Create").btn.btn-default
+                                    button(data-dismiss="modal").btn.btn-default Close
+                div(role="dialog").modal.fade#searchUser
+                    .modal-dialog
+                        .modal-content
+                            .modal-header
+                                button(data-dismiss="modal").close &times;
+                                h4.modal-title Search User
+                            .modal-body(style="height:500px;overflow:auto;")
+                                label User Name
+                                input(type="text" placeholder="Enter User Name").form-control#keyword
+                                hr
+                                table#user-table.table
+                                    thead
+                                        tr
+                                            th(width="10%") No.
+                                            th UserName
+                                    tbody
+                                        - var n = 1;
+                                        each user in others
+                                            tr
+                                                td=n
+                                                td=user.username
+                                                - n++;
+                            .modal-footer
+                                button(data-dismiss="modal").btn.btn-default Close
                             //- li
                             //-     a(href='bootstrap-elements.html')
                             //-         i.fa.fa-fw.fa-desktop
@@ -195,3 +276,32 @@ html(lang='en')
             //- script(src='/js/plugins/morris/raphael.min.js')
             //- script(src='/js/plugins/morris/morris.min.js')
             //- script(src='/js/plugins/morris/morris-data.js')
+            script.
+                $("#msgbox").keyup(function (event) {
+                    if (event.which == 13) {
+                        
+                    }
+                });
+                $('#settingDocumentModal').on('show.bs.modal', function(e) {
+                    var modal = $(this);
+                    var id = $(e.relatedTarget).data('dc-id');
+                    var name = $(e.relatedTarget).data('dc-name');
+                    modal.find('.dcid').val(id);
+                    modal.find('.dcname').val(name);
+                });
+                $('#settingFolderModal').on('show.bs.modal', function(e) {
+                    var modal = $(this);
+                    var id = $(e.relatedTarget).data('fd-id');
+                    var name = $(e.relatedTarget).data('fd-name');
+                    modal.find('.fdid').val(id);
+                    modal.find('.fdname').val(name);
+                });
+                $('#searchUser').on('show.bs.modal', function() {
+                    $("#keyword").keyup(function() {
+                        var k = $(this).val();
+                        $("#user-table > tbody > tr").hide();
+                        var temp = $("#user-table > tbody > tr > td:nth-child(5n+2):contains('" + k + "')");
+
+                        $(temp).parent().show();
+                    })
+                })

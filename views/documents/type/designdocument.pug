@@ -57,9 +57,12 @@ html
 
                 //// Initialize contents.
                 firepad.on('ready', function () {
-                    if (firepad.isHistoryEmpty()) {
-                        firepad.setHtml('')
-                    }
+                    firepad.on('ready', function () {
+                        if (firepad.isHistoryEmpty()) {
+                            firepad.setHtml(
+                                '<h1 style="font-size: 24px;">Design Document</h1>')
+                            }
+                    });
                 });
 
                 // An example of a complex custom entity.

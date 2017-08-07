@@ -1,42 +1,28 @@
 extends ../layout/default
 block header
     - var private = 'active';
-block contents
     - var curPath = cur ? cur.id : '/';
+block contents
     #page-wrapper
         .container-fluid
             .row
                 .col-lg-12
                     h1(style="display:inline-block;").page-header
                         | Private-Documents
-                    .upload
-                        a(data-toggle="modal" href="#createDocumentModal")
-                            .dc_up_fl
-                        a(data-toggle="modal" href="#createFolderModal")
-                            .dc_up_fd    
+                    //- .upload
+                    //-     a(data-toggle="modal" href="#createDocumentModal")
+                    //-         .dc_up_fl
+                    //-     a(data-toggle="modal" href="#createFolderModal")
+                    //-         .dc_up_fd    
             .row
                 .col-lg-12
-                    ol.breadcrumb
+                    ol(style="margin-bottom:3px;").breadcrumb
                         li.active
-                            i.fa.fa-user
+                            i.fa.fa-user.faiconsize
                                 |  Private
                     .PrivateDocuments
-                        - if(curPath != '/' && cur.parent)
-                            a(href="/privateDocuments/"+cur.parent.id)
-                                .dc_fd
-                                    span.f_text ../
-                        - else if(curPath != '/')
-                            a(href="/privateDocuments/")
-                                .dc_fd
-                                    span.f_text ../
-                        each folder in folders
-                            a(href="/privateDocuments/"+folder.id)
-                                .dc_fd
-                                    span.f_text=folder.foldername
-                        each document in documents
-                            a(href='/privateDocuments/view/'+document.id target="_blank")
-                                .dc_fl
-                                    span.f_text=document.documentname
+                        include ../part/list
+                        +list('private',folders,documents)
     div(role="dialog").modal.fade#createFolderModal
         .modal-dialog
             .modal-content

@@ -57,9 +57,20 @@ html
 
                 //// Initialize contents.
                 firepad.on('ready', function () {
-                    if (firepad.isHistoryEmpty()) {
-                        firepad.setHtml('')
-                    }
+                    firepad.on('ready', function () {
+                        if (firepad.isHistoryEmpty()) {
+                            firepad.setHtml(
+                                '<h1 style="font-size: 24px;">프로젝트 이름</h1>'+
+                                '<br>'+
+                                '<h2 style="font-size: 18px;">1. 프로젝트 주제</h2>'+
+                                '<br><br><br><br>'+
+                                '<h2 style="font-size: 18px;">2. 동기</h2>'+
+                                '<br><br><br><br>'+
+                                '<h2 style="font-size: 18px;">3. 개발 방향</h2>'+
+                                '<br><br><br><br>'+
+                                '<h2 style="font-size: 18px;">4. 구현할 기능</h2>')
+                            }
+                    });
                 });
 
                 // An example of a complex custom entity.
