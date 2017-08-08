@@ -7,16 +7,18 @@ const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
     //User ID
-    username : { type : String , required : true, unique : true },
+    username: { type: String , required: true, unique: true },
+    //User Email
+    useremail: { type: String, required: true, unique: true },
     //User Password
-    password : { type : String , required : true },
+    password: { type: String , required : true },
     //User Docs,Files
-    contents:{
-        documents:[{type: Schema.Types.ObjectId, ref: 'Document'}],
-        folders:[{type: Schema.Types.ObjectId, ref: 'Folder'}]
+    contents: {
+        documents: [{ type: Schema.Types.ObjectId, ref: 'Document' }],
+        folders: [{ type: Schema.Types.ObjectId, ref: 'Folder' }]
     },
     //Encryption
-    salt :{type :String, default:null}
+    salt: { type :String, default:null }
 });
 
 userSchema.pre('save', function(next){

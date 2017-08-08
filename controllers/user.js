@@ -10,8 +10,9 @@ const User = require("../models/user");
 
 router.post('/create', async(function*(req,res){
     let user = new User({
-        username : req.body.username,
-        password : req.body.password
+        username: req.body.username,
+        password: req.body.password,
+        useremail: req.body.useremail,
     });
     try{
         yield user.save();

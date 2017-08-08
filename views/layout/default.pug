@@ -16,11 +16,6 @@ html(lang='en')
         //- Custom Fonts
         link(href='/font-awesome/css/font-awesome.min.css', rel='stylesheet', type='text/css')
         link(href='/stylesheets/style.css', rel='stylesheet', type='text/css')
-        //- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
-        //- WARNING: Respond.js doesn't work if you view the page via file://
-        //-if lt IE 9
-            script(src='https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js')
-            script(src='https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js')
     body
         block header
             - var dashboard = dashboard || '';
@@ -28,6 +23,78 @@ html(lang='en')
             - var public = public || '';
             - var fredboard = freeboard || '';
         block body
+            //- Create Folder Modal
+            div(role="dialog").modal.fade#createFolderModal
+                .modal-dialog
+                    .modal-content
+                        form(action="/folder/create" method="post")
+                            .modal-header
+                                button(data-dismiss="modal").close &times;
+                                h4.modal-title Create Folder
+                            .modal-body
+                                label Folder Name
+                                input(type="text" name="foldername" placeholder="Enter Folder Name").form-control
+                                input(type="hidden" name="type" value="private")
+                                input(type="hidden" name="path" value=curPath)
+                            .modal-footer
+                                input(type="submit" value="Create").btn.btn-default
+                                button(data-dismiss="modal").btn.btn-default Close
+            //- Create Document Modal
+            div(role="dialog").modal.fade#createDocumentModal
+                .modal-dialog
+                    .modal-content
+                        form(action="/document/create" method="post" target="_blank")
+                            .modal-header
+                                button(data-dismiss="modal").close &times;
+                                h4.modal-title Create Document
+                            .modal-body
+                                label Document Name
+                                input(type="text" name="documentname" placeholder="Enter Document Name").form-control
+                                input(type="hidden" name="type" value="private")
+                                input(type="hidden" name="path" value=curPath)
+                                hr
+                                label Document Form
+                                - var n = 0;
+                                - var options = ['없음','Mind Map','One Page Proposal','Requirement Document','Design Document','Test Case','User Manual','Final Presentation']
+                                select(name="docoption").form-control
+                                    - while(n<8)
+                                        option(value=n)=options[n]
+                                        - n++
+                            .modal-footer
+                                input(type="submit" value="Create").btn.btn-default
+                                button(data-dismiss="modal").btn.btn-default Close
+            //- Search User Modal
+            div(role="dialog").modal.fade#searchUser
+                .modal-dialog
+                    .modal-content
+                        .modal-header
+                            button(data-dismiss="modal").close &times;
+                            h4.modal-title Search User
+                        .modal-body(style="height:500px;overflow:auto;")
+                            label User Name
+                            input(type="text" placeholder="Enter User Name").form-control#keyword
+                            hr
+                            table#user-table.table
+                                thead
+                                    tr
+                                        th(width="10%") No.
+                                        th User Name
+                                        th User Email
+                                        th(width="5%") Mail
+                                tbody
+                                    - var n = 1;
+                                    each user in others
+                                        tr
+                                            td=n
+                                            td=user.username
+                                            td=user.useremail
+                                            td(align="center")
+                                                a(href="mailto:"+"sejong.400@gmail.com")
+                                                    i.fa.fa-envelope
+                                            - n++;
+                        .modal-footer
+                            button(data-dismiss="modal").btn.btn-default Close
+            //- body
             #wrapper
                 nav.navbar.navbar-inverse.navbar-fixed-top.boxshadow(role='navigation')
                     .navbar-header
@@ -177,94 +244,6 @@ html(lang='en')
                                 a(data-toggle="modal" href="#searchUser")
                                     i.fa.fa-fw.fa-search
                                     |  Search User
-                div(role="dialog").modal.fade#createFolderModal
-                    .modal-dialog
-                        .modal-content
-                            form(action="/folder/create" method="post")
-                                .modal-header
-                                    button(data-dismiss="modal").close &times;
-                                    h4.modal-title Create Folder
-                                .modal-body
-                                    label Folder Name
-                                    input(type="text" name="foldername" placeholder="Enter Folder Name").form-control
-                                    input(type="hidden" name="type" value="private")
-                                    input(type="hidden" name="path" value=curPath)
-                                .modal-footer
-                                    input(type="submit" value="Create").btn.btn-default
-                                    button(data-dismiss="modal").btn.btn-default Close
-                div(role="dialog").modal.fade#createDocumentModal
-                    .modal-dialog
-                        .modal-content
-                            form(action="/document/create" method="post" target="_blank")
-                                .modal-header
-                                    button(data-dismiss="modal").close &times;
-                                    h4.modal-title Create Document
-                                .modal-body
-                                    label Document Name
-                                    input(type="text" name="documentname" placeholder="Enter Document Name").form-control
-                                    input(type="hidden" name="type" value="private")
-                                    input(type="hidden" name="path" value=curPath)
-                                    hr
-                                    label Document Form
-                                    - var n = 0;
-                                    - var options = ['없음','Mind Map','One Page Proposal','Requirement Document','Design Document','Test Case','User Manual','Final Presentation']
-                                    select(name="docoption").form-control
-                                        - while(n<8)
-                                            option(value=n)=options[n]
-                                            - n++
-                                .modal-footer
-                                    input(type="submit" value="Create").btn.btn-default
-                                    button(data-dismiss="modal").btn.btn-default Close
-                div(role="dialog").modal.fade#searchUser
-                    .modal-dialog
-                        .modal-content
-                            .modal-header
-                                button(data-dismiss="modal").close &times;
-                                h4.modal-title Search User
-                            .modal-body(style="height:500px;overflow:auto;")
-                                label User Name
-                                input(type="text" placeholder="Enter User Name").form-control#keyword
-                                hr
-                                table#user-table.table
-                                    thead
-                                        tr
-                                            th(width="10%") No.
-                                            th UserName
-                                    tbody
-                                        - var n = 1;
-                                        each user in others
-                                            tr
-                                                td=n
-                                                td=user.username
-                                                - n++;
-                            .modal-footer
-                                button(data-dismiss="modal").btn.btn-default Close
-                            //- li
-                            //-     a(href='bootstrap-elements.html')
-                            //-         i.fa.fa-fw.fa-desktop
-                            //-         |  Bootstrap Elements
-                            //- li
-                            //-     a(href='bootstrap-grid.html')
-                            //-         i.fa.fa-fw.fa-wrench
-                            //-         |  Bootstrap Grid
-                            //- li
-                            //-     a(href='javascript:;', data-toggle='collapse', data-target='#demo')
-                            //-         i.fa.fa-fw.fa-arrows-v
-                            //-         |  Dropdown 
-                            //-         i.fa.fa-fw.fa-caret-down
-                            //-     ul#demo.collapse
-                            //-         li
-                            //-             a(href='#') Dropdown Item
-                            //-         li
-                            //-             a(href='#') Dropdown Item
-                            //- li
-                            //-     a(href='blank-page.html')
-                            //-         i.fa.fa-fw.fa-file
-                            //-         |  Blank Page
-                            //- li
-                            //-     a(href='index-rtl.html')
-                            //-         i.fa.fa-fw.fa-dashboard
-                            //-         |  RTL Dashboard
                 block contents
                 
         block footer
@@ -272,16 +251,8 @@ html(lang='en')
             script(src='/js/jquery.js')
             //- Bootstrap Core JavaScript
             script(src='/js/bootstrap.min.js')
-            //- Morris Charts JavaScript
-            //- script(src='/js/plugins/morris/raphael.min.js')
-            //- script(src='/js/plugins/morris/morris.min.js')
-            //- script(src='/js/plugins/morris/morris-data.js')
+            //- modal script
             script.
-                $("#msgbox").keyup(function (event) {
-                    if (event.which == 13) {
-                        
-                    }
-                });
                 $('#settingDocumentModal').on('show.bs.modal', function(e) {
                     var modal = $(this);
                     var id = $(e.relatedTarget).data('dc-id');
