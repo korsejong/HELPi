@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Folder = require('./folder');
 const Document = require('./document');
+const Message = require('./message');
 //Encryption module
 const crypto = require('crypto');
 const Schema = mongoose.Schema;
@@ -17,6 +18,12 @@ const userSchema = new Schema({
         documents: [{ type: Schema.Types.ObjectId, ref: 'Document' }],
         folders: [{ type: Schema.Types.ObjectId, ref: 'Folder' }]
     },
+    //message
+    alarm: [{
+        message: { type: Schema.Types.ObjectId, ref: 'Message' },
+        status: { type: Boolean, default: false },
+        deleted: { type: Boolean, default: false }
+    }],
     //Encryption
     salt: { type :String, default:null }
 });
