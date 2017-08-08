@@ -43,10 +43,37 @@ router.post('/update', async(function*(req,res){
         yield folder.save();
     }catch(err){
         console.log(err);
-        re.redirect('back');
+        res.redirect('back');
     }
+    setContentsPublic(folder.contents,partner);
     res.redirect('back');
 }));
+
+const setContentsPublic = function(contents,p){
+    let partner = p;
+    contents.documents.forEach(async(function*(id){
+        let document = yield Document.findById(id);
+        document.type = 'public';
+        document.partner.push(partner);
+        try{
+            yield document.save();
+        } catch(err) {
+            console.log(err);
+        }
+    }));
+    contents.folders.forEach(async(function*(id){
+        let folder = yield Folder.findById(id);
+        folder.type= 'public';
+        folder.partner.push(partner);
+        try{
+            yield folder.save();
+        } catch(err) {
+            console.log(err);
+        }
+        if(folder.contents.length != 0)
+            setContentsPublic(folder.contents,partner);
+    }));
+}
 
 router.get('/delete/:id', async(function*(req,res){
     let folder = yield Folder.findById(req.params.id);
