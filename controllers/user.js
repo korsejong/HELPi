@@ -51,8 +51,12 @@ router.get( '/signout', function(req,res){
 
 router.post('/update', upload.single('image'), async(function* (req, res) {
     let user = req.user;
-    user.profileImage = "/profile/" + req.file.filename;
-    console.log(user);
+    user.useremail = req.body.useremail;
+    user.username = req.body.username;
+    if(req.body.password)
+        user.password = user.hashPassword(req.body.password);
+    if(req.file)
+        user.profileImage = "/profile/" + req.file.filename;
     try {
         yield user.save();
         res.redirect('back');

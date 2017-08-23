@@ -9,19 +9,19 @@ const common = require('../util/common');
 const is_user = common.requireAuthentication;
 
 router.get('/', is_user, async(function* (req, res) {
-  let posts = yield Freepost.find().populate('writer');
-  res.render('freeboard/list-board', { 
-    title: 'HELPi', 
-    user: req.user,
-    posts: posts,
-  });
+	let posts = yield Freepost.find().populate('writer');
+	res.render('freeboard/list-board', { 
+		title: 'HELPi', 
+		user: req.user,
+		posts: posts,
+	});
 }));
 
 router.get('/:id', is_user, function (req, res){
-  res.render('freeboard?view-board',{
-    title: 'HELPi',
+	res.render('freeboard?view-board',{
+		title: 'HELPi',
 
-  });
+	});
 });
 
 module.exports = router;

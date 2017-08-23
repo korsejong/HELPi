@@ -308,3 +308,11 @@ a.text-white:focus {
 .text-pink{
     color: #fe4365;
 }
+.register-form{
+    background-color: white;
+    padding: 30px 30px 30px 30px;
+    border-radius: 20px;
+}
+.border-r-5{
+    border-radius: 5px;
+}

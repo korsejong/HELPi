@@ -60,7 +60,21 @@ html
                     firepad.on('ready', function () {
                         if (firepad.isHistoryEmpty()) {
                             firepad.setHtml(
-                                '<h1 style="font-size: 24px;">Requirement Document</h1>')
+                                '<h1 style="font-size: 24px;">Requirement Document</h1>'+
+                                '<br>'+
+                                '<h2 style="font-size: 18px">1. 유저 요구사항 정의</h2 style="font-size: 18px">'+
+                                '<br><ul><li type="A">Functional Requirements</li><br><br><br><br><li>Non-Functional Requirements</li></ul>' +
+                                '<br><br><br><br>'+
+                                '<h2 style="font-size: 18px">2. 시스템 구성도</h2 style="font-size: 18px">' +
+                                '<br><br><br><br>'+
+                                '<h2 style="font-size: 18px">3. 시스템 요구사항 정의</h2 style="font-size: 18px">' +
+                                '<br><ul><li>Function </li><br><br><li>Description </li><br><br><li>Inputs </li><br><br><li>Source </li><br><br><li>Outputs </li><br><br><li>Destination </li><br><br><li>Action </li><br><br><li>Requirements </li><br><br><li>Pre-condition </li><br><br><li>Post-condition </li><br><br><li>Side effect </li></ul>' +
+                                '<br><br>'+
+                                '<h2 style="font-size: 18px">4. 시스템 확장성</h2 style="font-size: 18px">'+
+                                '<br><br><br><br>'+
+                                '<h2 style="font-size: 18px">5. 유사 서비스</h2 style="font-size: 18px">'+
+                                '<br><br><br><br>'
+                                )
                             }
                     });
                 });

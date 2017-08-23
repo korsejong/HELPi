@@ -56,9 +56,9 @@ html(lang='en')
                                 hr
                                 label Document Form
                                 - var n = 0;
-                                - var options = ['없음','Mind Map','One Page Proposal','Requirement Document','Design Document','Test Case','User Manual','Final Presentation']
+                                - var options = ['None','Mind Map','One Page Proposal','Requirement Document','Design Document','Test Case','User Manual']
                                 select(name="docoption").form-control
-                                    - while(n<8)
+                                    - while(n<7)
                                         option(value=n)=options[n]
                                         - n++
                             .modal-footer
@@ -87,10 +87,10 @@ html(lang='en')
                                             input(type="email" name="useremail" value=user.useremail).form-control
                                         .form-group
                                             label Password
-                                            input(type="password" name="password").form-control
+                                            input#password(type="password" name="password").form-control
                                         .form-group
                                             label Confirm-Password
-                                            input(type="confirm-password" name="confirm-password").form-control
+                                            input#confirm_password(type="password" name="confirm-password").form-control
                             .modal-footer
                                 input(type="submit" value="Update").btn.btn-default
                                 button(data-dismiss="modal").btn.btn-default Close
@@ -136,83 +136,6 @@ html(lang='en')
                             span.icon-bar
                         a.navbar-brand(href='/dashboard') HELPi
                     ul.nav.navbar-right.top-nav
-                        //- li.dropdown
-                        //-     a.dropdown-toggle(href='#', data-toggle='dropdown')
-                        //-         i.fa.fa-envelope
-                        //-         span &nbsp;
-                        //-         b.caret
-                        //-     ul.dropdown-menu.message-dropdown
-                        //-         li.message-preview
-                        //-             a(href='#')
-                        //-                 .media
-                        //-                     span.pull-left
-                        //-                         img.media-object(src='http://placehold.it/50x50', alt='')
-                        //-                     .media-body
-                        //-                         h5.media-heading
-                        //-                             strong John Smith
-                        //-                         p.small.text-muted
-                        //-                             i.fa.fa-clock-o
-                        //-                             |  Yesterday at 4:32 PM
-                        //-                         p Lorem ipsum dolor sit amet, consectetur...
-                        //-         li.message-preview
-                        //-             a(href='#')
-                        //-                 .media
-                        //-                     span.pull-left
-                        //-                         img.media-object(src='http://placehold.it/50x50', alt='')
-                        //-                     .media-body
-                        //-                         h5.media-heading
-                        //-                             strong John Smith
-                        //-                         p.small.text-muted
-                        //-                             i.fa.fa-clock-o
-                        //-                             |  Yesterday at 4:32 PM
-                        //-                         p Lorem ipsum dolor sit amet, consectetur...
-                        //-         li.message-preview
-                        //-             a(href='#')
-                        //-                 .media
-                        //-                     span.pull-left
-                        //-                         img.media-object(src='http://placehold.it/50x50', alt='')
-                        //-                     .media-body
-                        //-                         h5.media-heading
-                        //-                             strong John Smith
-                        //-                         p.small.text-muted
-                        //-                             i.fa.fa-clock-o
-                        //-                             |  Yesterday at 4:32 PM
-                        //-                         p Lorem ipsum dolor sit amet, consectetur...
-                        //-         li.message-footer
-                        //-             a(href='#') Read All New Messages
-                        //- li.dropdown
-                        //-     a.dropdown-toggle(href='#', data-toggle='dropdown')
-                        //-         i.fa.fa-bell
-                        //-         span &nbsp;
-                        //-         b.caret
-                        //-     ul.dropdown-menu.alert-dropdown
-                        //-         li
-                        //-             a(href='#')
-                        //-                 | Alert Name 
-                        //-                 span.label.label-default Alert Badge
-                        //-         li
-                        //-             a(href='#')
-                        //-                 | Alert Name 
-                        //-                 span.label.label-primary Alert Badge
-                        //-         li
-                        //-             a(href='#')
-                        //-                 | Alert Name 
-                        //-                 span.label.label-success Alert Badge
-                        //-         li
-                        //-             a(href='#')
-                        //-                 | Alert Name 
-                        //-                 span.label.label-info Alert Badge
-                        //-         li
-                        //-             a(href='#')
-                        //-                 | Alert Name 
-                        //-                 span.label.label-warning Alert Badge
-                        //-         li
-                        //-             a(href='#')
-                        //-                 | Alert Name 
-                        //-                 span.label.label-danger Alert Badge
-                        //-         li.divider
-                        //-         li
-                        //-             a(href='#') View All
                         li.dropdown
                             a.dropdown-toggle(href='#', data-toggle='dropdown')
                                 i.fa.fa-user
@@ -228,15 +151,6 @@ html(lang='en')
                                     a(href='/user/signout' style="color: #fe4365;")
                                         i.fa.fa-fw.fa-power-off
                                         |  Log Out
-                                //- li
-                                //-     a(href='#')
-                                //-         i.fa.fa-fw.fa-envelope
-                                //-         |  Inbox
-                                //- li
-                                //-     a(href='#')
-                                //-         i.fa.fa-fw.fa-gear
-                                //-         |  Settings
-                                //- li.divider
                     .collapse.navbar-collapse.navbar-ex1-collapse
                         ul.nav.navbar-nav.side-nav
                             li
@@ -283,6 +197,18 @@ html(lang='en')
             script(src='/js/bootstrap.min.js')
             //- modal script
             script.
+                // validatePassword
+                var password = document.getElementById("password")
+                var confirm_password = document.getElementById("confirm_password");
+                function validatePassword(){
+                    if(password.value != confirm_password.value) {
+                        confirm_password.setCustomValidity("Passwords Don't Match");
+                    } else {
+                        confirm_password.setCustomValidity('');
+                    }
+                }
+                password.onchange = validatePassword;
+                confirm_password.onkeyup = validatePassword;
                 var loadFile = function(event) {
                     var reader = new FileReader();
                     reader.onload = function(){

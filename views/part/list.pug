@@ -69,17 +69,3 @@ mixin list(type,folders,documents)
                 |  
             a(href="/document/delete/"+document.id onclick="if(confirm('삭제하시겠습니까?')==false){return false;}")
                 i.fa.fa-trash.f_text.faiconsize
-    //- script(src='/js/jquery.js')
-    //- script.
-    //-     $('#settingDocumentModal').on('show.bs.modal', function(e) {
-    //-         var modal = $(this);
-    //-         modal.find('.test').val("test");
-    //-         var id = $(e.relatedTarget).data('dc-id');
-    //-         modal.find('.dcid').val(id);
-    //-     });
-    //-     $('#settingFolderModal').on('show.bs.modal', function(e) {
-    //-         //get data-id attribute of the clicked element
-    //-         var id = $(e.relatedTarget).data('fd-id');
-    //-         //populate the textbox
-    //-         $(e.currentTarget).find('input[name="fdid"]').val(id);
-    //-     });

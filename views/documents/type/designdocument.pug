@@ -60,7 +60,20 @@ html
                     firepad.on('ready', function () {
                         if (firepad.isHistoryEmpty()) {
                             firepad.setHtml(
-                                '<h1 style="font-size: 24px;">Design Document</h1>')
+                                '<h1 style="font-size: 24px;">Design Document</h1>' +
+                                '<br>'+
+                                '<h2 style="font-size: 18px">1. System Architecture Overview</h2 style="font-size: 18px">'+
+                                '<br><ul><li>System Architecture Diagram & Block Diagram</li><br><br><br><br><li>System Architecture Description</li></ul>' +
+                                '<br><br><br><br>'+
+                                '<h2 style="font-size: 18px">2. Design Description</h2 style="font-size: 18px">' +
+                                '<br><ul><li>System Design Overview</li><br><br><br><br><li>Subsystem Description</li><br><br><br><br><li>Class Diagram</li><br><br><br><br><li>Sequence Diagram</li></ul>' +
+                                '<br><br><br><br>'+
+                                '<h2 style="font-size: 18px">3. User Interface Design</h2 style="font-size: 18px">' +
+                                '<br><ul><li>User Interface Overview</li><br><br><br><br><li>Display Description</li></ul>' +
+                                '<br><br><br><br>'+
+                                '<h2 style="font-size: 18px">4. Schedule Management</h2 style="font-size: 18px">'+
+                                '<br><br><br><br>'
+                                )
                             }
                     });
                 });
