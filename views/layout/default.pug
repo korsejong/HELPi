@@ -7,6 +7,7 @@ html(lang='en')
         meta(name='description', content='')
         meta(name='author', content='')
         title HELPi
+        link(rel="shortcut icon" href="images/HELPi-logo.png")
         //- Bootstrap Core CSS
         link(href='/css/bootstrap.min.css', rel='stylesheet')
         //- Custom CSS
@@ -63,8 +64,38 @@ html(lang='en')
                             .modal-footer
                                 input(type="submit" value="Create").btn.btn-default
                                 button(data-dismiss="modal").btn.btn-default Close
+            //- Profile Modal
+            div(role="dialog").modal.fade#profileModal
+                .modal-dialog
+                    .modal-content
+                        .modal-header
+                            h4.modal-title Profile
+                        form(action="/user/update" method="post" enctype="multipart/form-data" )
+                            .modal-body
+                                .row
+                                    .col-md-6
+                                        .form-group
+                                            label User image
+                                            img(src=user.profileImage style="width:100%;height:100%;")#preview
+                                            input(type="file" name="image" onchange="loadFile(event)").form-control
+                                    .col-md-6
+                                        .form-group
+                                            label Name
+                                            input(type="text" name="username" value=user.username).form-control
+                                        .form-group
+                                            label Email
+                                            input(type="email" name="useremail" value=user.useremail).form-control
+                                        .form-group
+                                            label Password
+                                            input(type="password" name="password").form-control
+                                        .form-group
+                                            label Confirm-Password
+                                            input(type="confirm-password" name="confirm-password").form-control
+                            .modal-footer
+                                input(type="submit" value="Update").btn.btn-default
+                                button(data-dismiss="modal").btn.btn-default Close
             //- Search User Modal
-            div(role="dialog").modal.fade#searchUser
+            div(role="dialog").modal.fade#searchUserModal
                 .modal-dialog
                     .modal-content
                         .modal-header
@@ -105,83 +136,83 @@ html(lang='en')
                             span.icon-bar
                         a.navbar-brand(href='/dashboard') HELPi
                     ul.nav.navbar-right.top-nav
-                        li.dropdown
-                            a.dropdown-toggle(href='#', data-toggle='dropdown')
-                                i.fa.fa-envelope
-                                span &nbsp;
-                                b.caret
-                            ul.dropdown-menu.message-dropdown
-                                li.message-preview
-                                    a(href='#')
-                                        .media
-                                            span.pull-left
-                                                img.media-object(src='http://placehold.it/50x50', alt='')
-                                            .media-body
-                                                h5.media-heading
-                                                    strong John Smith
-                                                p.small.text-muted
-                                                    i.fa.fa-clock-o
-                                                    |  Yesterday at 4:32 PM
-                                                p Lorem ipsum dolor sit amet, consectetur...
-                                li.message-preview
-                                    a(href='#')
-                                        .media
-                                            span.pull-left
-                                                img.media-object(src='http://placehold.it/50x50', alt='')
-                                            .media-body
-                                                h5.media-heading
-                                                    strong John Smith
-                                                p.small.text-muted
-                                                    i.fa.fa-clock-o
-                                                    |  Yesterday at 4:32 PM
-                                                p Lorem ipsum dolor sit amet, consectetur...
-                                li.message-preview
-                                    a(href='#')
-                                        .media
-                                            span.pull-left
-                                                img.media-object(src='http://placehold.it/50x50', alt='')
-                                            .media-body
-                                                h5.media-heading
-                                                    strong John Smith
-                                                p.small.text-muted
-                                                    i.fa.fa-clock-o
-                                                    |  Yesterday at 4:32 PM
-                                                p Lorem ipsum dolor sit amet, consectetur...
-                                li.message-footer
-                                    a(href='#') Read All New Messages
-                        li.dropdown
-                            a.dropdown-toggle(href='#', data-toggle='dropdown')
-                                i.fa.fa-bell
-                                span &nbsp;
-                                b.caret
-                            ul.dropdown-menu.alert-dropdown
-                                li
-                                    a(href='#')
-                                        | Alert Name 
-                                        span.label.label-default Alert Badge
-                                li
-                                    a(href='#')
-                                        | Alert Name 
-                                        span.label.label-primary Alert Badge
-                                li
-                                    a(href='#')
-                                        | Alert Name 
-                                        span.label.label-success Alert Badge
-                                li
-                                    a(href='#')
-                                        | Alert Name 
-                                        span.label.label-info Alert Badge
-                                li
-                                    a(href='#')
-                                        | Alert Name 
-                                        span.label.label-warning Alert Badge
-                                li
-                                    a(href='#')
-                                        | Alert Name 
-                                        span.label.label-danger Alert Badge
-                                li.divider
-                                li
-                                    a(href='#') View All
+                        //- li.dropdown
+                        //-     a.dropdown-toggle(href='#', data-toggle='dropdown')
+                        //-         i.fa.fa-envelope
+                        //-         span &nbsp;
+                        //-         b.caret
+                        //-     ul.dropdown-menu.message-dropdown
+                        //-         li.message-preview
+                        //-             a(href='#')
+                        //-                 .media
+                        //-                     span.pull-left
+                        //-                         img.media-object(src='http://placehold.it/50x50', alt='')
+                        //-                     .media-body
+                        //-                         h5.media-heading
+                        //-                             strong John Smith
+                        //-                         p.small.text-muted
+                        //-                             i.fa.fa-clock-o
+                        //-                             |  Yesterday at 4:32 PM
+                        //-                         p Lorem ipsum dolor sit amet, consectetur...
+                        //-         li.message-preview
+                        //-             a(href='#')
+                        //-                 .media
+                        //-                     span.pull-left
+                        //-                         img.media-object(src='http://placehold.it/50x50', alt='')
+                        //-                     .media-body
+                        //-                         h5.media-heading
+                        //-                             strong John Smith
+                        //-                         p.small.text-muted
+                        //-                             i.fa.fa-clock-o
+                        //-                             |  Yesterday at 4:32 PM
+                        //-                         p Lorem ipsum dolor sit amet, consectetur...
+                        //-         li.message-preview
+                        //-             a(href='#')
+                        //-                 .media
+                        //-                     span.pull-left
+                        //-                         img.media-object(src='http://placehold.it/50x50', alt='')
+                        //-                     .media-body
+                        //-                         h5.media-heading
+                        //-                             strong John Smith
+                        //-                         p.small.text-muted
+                        //-                             i.fa.fa-clock-o
+                        //-                             |  Yesterday at 4:32 PM
+                        //-                         p Lorem ipsum dolor sit amet, consectetur...
+                        //-         li.message-footer
+                        //-             a(href='#') Read All New Messages
+                        //- li.dropdown
+                        //-     a.dropdown-toggle(href='#', data-toggle='dropdown')
+                        //-         i.fa.fa-bell
+                        //-         span &nbsp;
+                        //-         b.caret
+                        //-     ul.dropdown-menu.alert-dropdown
+                        //-         li
+                        //-             a(href='#')
+                        //-                 | Alert Name 
+                        //-                 span.label.label-default Alert Badge
+                        //-         li
+                        //-             a(href='#')
+                        //-                 | Alert Name 
+                        //-                 span.label.label-primary Alert Badge
+                        //-         li
+                        //-             a(href='#')
+                        //-                 | Alert Name 
+                        //-                 span.label.label-success Alert Badge
+                        //-         li
+                        //-             a(href='#')
+                        //-                 | Alert Name 
+                        //-                 span.label.label-info Alert Badge
+                        //-         li
+                        //-             a(href='#')
+                        //-                 | Alert Name 
+                        //-                 span.label.label-warning Alert Badge
+                        //-         li
+                        //-             a(href='#')
+                        //-                 | Alert Name 
+                        //-                 span.label.label-danger Alert Badge
+                        //-         li.divider
+                        //-         li
+                        //-             a(href='#') View All
                         li.dropdown
                             a.dropdown-toggle(href='#', data-toggle='dropdown')
                                 i.fa.fa-user
@@ -189,10 +220,14 @@ html(lang='en')
                                 span &nbsp;
                                 b.caret
                             ul.dropdown-menu
-                                //- li
-                                //-     a(href='#')
-                                //-         i.fa.fa-fw.fa-user
-                                //-         |  Profile
+                                li
+                                    a(data-toggle="modal" href="#profileModal" style="color: #fe4365;")
+                                        i.fa.fa-fw.fa-user
+                                        |  Profile
+                                li
+                                    a(href='/user/signout' style="color: #fe4365;")
+                                        i.fa.fa-fw.fa-power-off
+                                        |  Log Out
                                 //- li
                                 //-     a(href='#')
                                 //-         i.fa.fa-fw.fa-envelope
@@ -202,11 +237,6 @@ html(lang='en')
                                 //-         i.fa.fa-fw.fa-gear
                                 //-         |  Settings
                                 //- li.divider
-                                li
-                                    form(action="/user/signout" method="post")
-                                        a(href='#' onclick="this.parentNode.submit(); return false;")
-                                            i.fa.fa-fw.fa-power-off
-                                            |  Log Out
                     .collapse.navbar-collapse.navbar-ex1-collapse
                         ul.nav.navbar-nav.side-nav
                             li
@@ -241,7 +271,7 @@ html(lang='en')
                                     i.fa.fa-fw.fa-edit
                                     |  Freeboard
                             li(style="position:absolute;bottom:0;")
-                                a(data-toggle="modal" href="#searchUser")
+                                a(data-toggle="modal" href="#searchUserModal")
                                     i.fa.fa-fw.fa-search
                                     |  Search User
                 block contents
@@ -253,6 +283,14 @@ html(lang='en')
             script(src='/js/bootstrap.min.js')
             //- modal script
             script.
+                var loadFile = function(event) {
+                    var reader = new FileReader();
+                    reader.onload = function(){
+                        var output = document.getElementById('preview');
+                        output.src = reader.result;
+                    };
+                    reader.readAsDataURL(event.target.files[0]);
+                };
                 $('#settingDocumentModal').on('show.bs.modal', function(e) {
                     var modal = $(this);
                     var id = $(e.relatedTarget).data('dc-id');

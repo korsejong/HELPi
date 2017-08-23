@@ -29,7 +29,7 @@
     transition: all 0.1s linear;
 }
 .panel-login>.panel-heading a.active{
-    font-size: 34px;
+    font-size: 40px;
 }
 .panel-login>.panel-heading hr{
     margin-top: 10px;
@@ -304,4 +304,7 @@ a.text-white:focus {
     margin-top: 20px;
     margin-left: 20px;
     margin-right: 10%;
+}
+.text-pink{
+    color: #fe4365;
 }

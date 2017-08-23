@@ -5,7 +5,10 @@ const { wrap: async } = require('co');
 
 const Freepost = require("../models/freepost");
 
-router.get('/', async(function* (req, res) {
+const common = require('../util/common');
+const is_user = common.requireAuthentication;
+
+router.get('/', is_user, async(function* (req, res) {
   let posts = yield Freepost.find().populate('writer');
   res.render('freeboard/list-board', { 
     title: 'HELPi', 
@@ -14,7 +17,7 @@ router.get('/', async(function* (req, res) {
   });
 }));
 
-router.get('/:id',function (req, res){
+router.get('/:id', is_user, function (req, res){
   res.render('freeboard?view-board',{
     title: 'HELPi',
 

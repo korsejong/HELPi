@@ -18,6 +18,7 @@ const userSchema = new Schema({
         documents: [{ type: Schema.Types.ObjectId, ref: 'Document' }],
         folders: [{ type: Schema.Types.ObjectId, ref: 'Folder' }]
     },
+    profileImage: String,
     //message
     alarm: [{
         message: { type: Schema.Types.ObjectId, ref: 'Message' },

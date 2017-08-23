@@ -7,7 +7,10 @@ const Document = require("../models/document");
 const Folder = require("../models/folder");
 const User = require("../models/user");
 
-router.get('/', async(function*(req, res){
+const common = require('../util/common');
+const is_user = common.requireAuthentication;
+
+router.get('/', is_user, async(function*(req, res){
   let folders = yield Folder.privateList(req.user,'/');
   let documents = yield Document.privateList(req.user,'/');
   res.render('private-documents/list-documents', { 
@@ -18,7 +21,7 @@ router.get('/', async(function*(req, res){
   });
 }));
 
-router.get('/:id', async(function*(req, res){
+router.get('/:id', is_user, async(function*(req, res){
   let curPath = yield Folder.findById(req.params.id).populate('parent');
   let folders = yield Folder.privateList(req.user,req.params.id);
   let documents = yield Document.privateList(req.user,req.params.id);
@@ -31,7 +34,7 @@ router.get('/:id', async(function*(req, res){
   });
 }));
 
-router.get('/view/:id', async(function*(req, res){
+router.get('/view/:id', is_user, async(function*(req, res){
   let document = yield Document.findById(req.params.id);
   switch(document.option){
     case 0:

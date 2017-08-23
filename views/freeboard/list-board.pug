@@ -35,8 +35,9 @@ block contents
                                 |  Freeboard
                         .PublicDocuments
                             each post in posts
-                                .col-lg-1.postleft
-                                    label=post.writer.username
-                                .col-lg-9.postright
-                                    label=post.title
-                                    textarea(readonly="readonly" rows="6" style="resize: none;").form-control=post.contents
+                                .row
+                                    .col-md-1.postleft
+                                        label.text-pink=post.writer.username
+                                    .col-md-9.postright
+                                        label.text-pink=post.title
+                                        textarea(readonly="readonly" rows="6" style="resize: none;").form-control=post.contents
