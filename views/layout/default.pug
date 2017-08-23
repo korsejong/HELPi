@@ -76,7 +76,10 @@ html(lang='en')
                                     .col-md-6
                                         .form-group
                                             label User image
-                                            img(src=user.profileImage style="width:100%;height:100%;")#preview
+                                            if(user.profileImage)
+                                                img(src=user.profileImage style="width:100%;height:100%;")#preview
+                                            else
+                                                img(src="images/profile.png" style="width:100%;height:100%;")#preview
                                             input(type="file" name="image" onchange="loadFile(event)").form-control
                                     .col-md-6
                                         .form-group

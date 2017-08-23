@@ -35,9 +35,15 @@ block contents
                                 |  Freeboard
                     .PublicDocuments
                         each post in posts
-                            .row
-                                .col-md-1.postleft
-                                    label.text-pink=post.writer.username
-                                .col-md-9.postright
-                                    label.text-pink=post.title
-                                    textarea(readonly="readonly" rows="6" style="resize: none;").form-control=post.contents
+                            .container-fluid
+                                div(style="background-color:white;padding-bottom:20px;").border-r-5.row
+                                    .col-md-1.postleft
+                                        if(user.profileImage)
+                                            img(src=user.profileImage style="width:50%;height:50%;")
+                                        else
+                                            img(src="images/profile.png" style="width:50%;height:50%;")
+                                        br
+                                        label.text-pink=post.writer.username
+                                    .col-md-9.postright
+                                        label.text-pink=post.title
+                                        textarea(readonly="readonly" rows="6" style="resize: none;width:100%")=post.contents
