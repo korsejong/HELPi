@@ -16,6 +16,11 @@ html(lang='en')
         //- Custom Fonts
         link(href='/font-awesome/css/font-awesome.min.css', rel='stylesheet', type='text/css')
         link(href='/stylesheets/style.css', rel='stylesheet', type='text/css')
+        
+        //- jQuery
+        script(src='/js/jquery.js')
+        //- Bootstrap Core JavaScript
+        script(src='/js/bootstrap.min.js')
     body
         block header
             - var dashboard = dashboard || '';
@@ -247,10 +252,6 @@ html(lang='en')
                 block contents
                 
         block footer
-            //- jQuery
-            script(src='/js/jquery.js')
-            //- Bootstrap Core JavaScript
-            script(src='/js/bootstrap.min.js')
             //- modal script
             script.
                 $('#settingDocumentModal').on('show.bs.modal', function(e) {

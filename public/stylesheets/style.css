@@ -305,3 +305,11 @@ a.text-white:focus {
     margin-left: 20px;
     margin-right: 10%;
 }
+
+.custom-menu {
+    z-index:1000;
+    position: absolute;
+    background-color:#C0C0C0;
+    border: 1px solid black;
+    padding: 2px;
+}

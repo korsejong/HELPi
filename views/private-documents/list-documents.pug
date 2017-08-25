@@ -20,7 +20,7 @@ block contents
                         li.active
                             i.fa.fa-user.faiconsize
                                 |  Private
-                    .PrivateDocuments
+                    .PrivateDocuments(style="height:1000px")
                         include ../part/list
                         +list('private',folders,documents)
     div(role="dialog").modal.fade#createFolderModal
@@ -51,3 +51,12 @@ block contents
                     .modal-footer
                         input(type="submit" value="Create").btn.btn-default
                         button(data-dismiss="modal").btn.btn-default Close
+    script.
+        $('.PrivateDocuments').bind("contextmenu", function(event) { 
+            event.preventDefault();
+            $("<div class='custom-menu'>Custom menu</div>")
+                .appendTo("body")
+                .css({top: event.pageY + "px", left: event.pageX + "px"});
+        }).bind("click", function(event) {
+            $("div.custom-menu").hide();
+        });
