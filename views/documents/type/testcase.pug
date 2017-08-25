@@ -60,7 +60,30 @@ html
                     firepad.on('ready', function () {
                         if (firepad.isHistoryEmpty()) {
                             firepad.setHtml(
-                                '<h1 style="font-size: 24px;">Test Case</h1>')
+                                '<h1 style="font-size: 24px;">Test Case Template Format</h1>' +
+                                '<br>'+
+                                '<h2 style="font-size: 18px">Test Information</h2 style="font-size: 18px"><br>' +
+                                '<ul><li>Name : 테스트 이름</li><br><li>Test ID : 테스트 고유 ID</li><br><li>Description : 테스트 설명</li></ul>' +
+                                '<br><br>' +
+                                '<h2 style="font-size: 18px">Test Feature</h2 style="font-size: 18px"><br>' +
+                                '<ul><li>Item : 테스트 항목</li></ul>' +
+                                '<br><br>' +
+                                '<h2 style="font-size: 18px">Approach</h2 style="font-size: 18px"><br>' +
+                                '<ul><li>테스트를 수행하기 위한 접근 방법에 대한 설명</li></ul>' +
+                                '<br><br>' +
+                                '<h2 style="font-size: 18px">Test Input / Output</h2 style="font-size: 18px"><br>' +
+                                '<ul><li>Input : Expected Output</li><br><li> -    : - </li></ul>' +
+                                '<br><br>' +
+                                '<h2 style="font-size: 18px">Test Pass / Fail</h2 style="font-size: 18px"><br>' +
+                                '<ul><li>Pass : 성공 시 예상 결과</li><br><li>Fail : 실패 시 예상 결과</li></ul>' +
+                                '<br><br>' +
+                                '<h2 style="font-size: 18px">Test Environment</h2 style="font-size: 18px"><br>' +
+                                '<ul><li>Resource : 테스트 시 요구하는 자원</li><br><li>Person in charge : 담당자</li></ul>' +
+                                '<br><br>' +
+                                '<h2 style="font-size: 18px">Remarks</h2 style="font-size: 18px"><br>' +
+                                '<ul><li>기타사항</li></ul>' +
+                                '<br><br>'
+                                )
                             }
                     });
                 });

@@ -8,53 +8,28 @@ block contents
             .row
                 .col-lg-12
                     h1(style="display:inline-block;").page-header
-                        | Private-Documents
-                    //- .upload
-                    //-     a(data-toggle="modal" href="#createDocumentModal")
-                    //-         .dc_up_fl
-                    //-     a(data-toggle="modal" href="#createFolderModal")
-                    //-         .dc_up_fd    
+                        | Private Documents
             .row
                 .col-lg-12
                     ol(style="margin-bottom:3px;").breadcrumb
                         li.active
                             i.fa.fa-user.faiconsize
                                 |  Private
-                    .PrivateDocuments(style="height:1000px")
+                    .PrivateDocuments
                         include ../part/list
                         +list('private',folders,documents)
-    div(role="dialog").modal.fade#createFolderModal
-        .modal-dialog
-            .modal-content
-                form(action="/folder/create" method="post")
-                    .modal-header
-                        button(data-dismiss="modal").close &times;
-                        h4.modal-title Create Folder
-                    .modal-body
-                        input(type="text" name="foldername" placeholder="Enter Folder Name").form-control
-                        input(type="hidden" name="type" value="private")
-                        input(type="hidden" name="path" value=curPath)
-                    .modal-footer
-                        input(type="submit" value="Create").btn.btn-default
-                        button(data-dismiss="modal").btn.btn-default Close
-    div(role="dialog").modal.fade#createDocumentModal
-        .modal-dialog
-            .modal-content
-                form(action="/document/create" method="post" target="_blank")
-                    .modal-header
-                        button(data-dismiss="modal").close &times;
-                        h4.modal-title Create Document
-                    .modal-body
-                        input(type="text" name="documentname" placeholder="Enter Document Name").form-control
-                        input(type="hidden" name="type" value="private")
-                        input(type="hidden" name="path" value=curPath)
-                    .modal-footer
-                        input(type="submit" value="Create").btn.btn-default
-                        button(data-dismiss="modal").btn.btn-default Close
     script.
+        function init() {
+            alert($(window).height());
+            $('.PrivateDocuments').css('height',$(window).height());
+        }
         $('.PrivateDocuments').bind("contextmenu", function(event) { 
             event.preventDefault();
-            $("<div class='custom-menu'>Custom menu</div>")
+            $("div.custom-menu").hide();
+            $("<div class='custom-menu'>" +
+                "<ul class='nav'>" +
+                "<li><a class='text-pink' data-toggle='modal' href='#createFolderModal'><i class='fa fa-fw fa-folder'></i> Create Folder</a></li>" +
+                "<li><a class='text-pink' data-toggle='modal' href='#createDocumentModal'><i class='fa fa-fw fa-file'></i> Create Document</a></li></ul></div>")
                 .appendTo("body")
                 .css({top: event.pageY + "px", left: event.pageX + "px"});
         }).bind("click", function(event) {

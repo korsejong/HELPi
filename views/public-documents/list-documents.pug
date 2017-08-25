@@ -8,12 +8,7 @@ block contents
             .row
                 .col-lg-12
                     h1(style="display:inline-block;").page-header
-                        | Public-Documents
-                    //- .upload
-                    //-     a(data-toggle="modal" href="#createDocumentModal")
-                    //-         .dc_up_fl
-                    //-     a(data-toggle="modal" href="#createFolderModal")
-                    //-         .dc_up_fd    
+                        | Public Documents
             .row
                 .col-lg-12
                     ol(style="margin-bottom:3px;").breadcrumb
@@ -23,31 +18,3 @@ block contents
                     .PublicDocuments
                         include ../part/list
                         +list('public',folders,documents)
-    div(role="dialog").modal.fade#createFolderModal
-        .modal-dialog
-            .modal-content
-                form(action="/folder/create" method="post")
-                    .modal-header
-                        button(data-dismiss="modal").close &times;
-                        h4.modal-title Create Folder
-                    .modal-body
-                        input(type="text" name="foldername" placeholder="Enter Folder Name").form-control
-                        input(type="hidden" name="type" value="public")
-                        input(type="hidden" name="path" value=curPath)
-                    .modal-footer
-                        input(type="submit" value="Create").btn.btn-default
-                        button(data-dismiss="modal").btn.btn-default Close
-    div(role="dialog").modal.fade#createDocumentModal
-        .modal-dialog
-            .modal-content
-                form(action="/document/create" method="post" target="_blank")
-                    .modal-header
-                        button(data-dismiss="modal").close &times;
-                        h4.modal-title Create Document
-                    .modal-body
-                        input(type="text" name="documentname" placeholder="Enter Document Name").form-control
-                        input(type="hidden" name="type" value="public")
-                        input(type="hidden" name="path" value=curPath)
-                    .modal-footer
-                        input(type="submit" value="Create").btn.btn-default
-                        button(data-dismiss="modal").btn.btn-default Close
