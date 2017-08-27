@@ -18,6 +18,7 @@ router.get('/', is_user, async(function*(req, res){
 		user: req.user,
 		folders: folders,
 		documents: documents,
+		type: 'private',
 	});
 	}));
 
@@ -31,6 +32,7 @@ router.get('/:id', is_user, async(function*(req, res){
 		folders: folders,
 		documents: documents,
 		cur: curPath,
+		type: 'private',
 	});
 }));
 

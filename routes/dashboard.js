@@ -29,7 +29,7 @@ router.get('/', is_user, async(function*(req, res){
 		public: public,
 		recent: recent,
 		others:others,
-
+		type: 'private',
 	});
 }));
 

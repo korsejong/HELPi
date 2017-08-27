@@ -9,7 +9,7 @@ const common = require('../util/common');
 const is_user = common.requireAuthentication;
 
 router.get('/', is_user, async(function* (req, res) {
-	let posts = yield Freepost.find().populate('writer');
+	let posts = yield Freepost.list();
 	res.render('freeboard/list-board', { 
 		title: 'HELPi', 
 		user: req.user,
@@ -20,7 +20,6 @@ router.get('/', is_user, async(function* (req, res) {
 router.get('/:id', is_user, function (req, res){
 	res.render('freeboard?view-board',{
 		title: 'HELPi',
-
 	});
 });
 

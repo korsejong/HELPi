@@ -22,4 +22,16 @@ const freepostSchema = new Schema({
     }
 );
 
+freepostSchema.methods = {
+    getCreated() {
+        return moment( this.created_at ).format('YYYY-MM-DD, hh:mm:ss a');
+    }
+}
+
+freepostSchema.statics = {
+    list() {
+        return this.find({deleted:false}).populate('writer');
+    },
+}
+
 module.exports = mongoose.model('freepost',freepostSchema);

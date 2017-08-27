@@ -24,8 +24,15 @@ router.post('/create', async(function*(req,res){
 router.post('/edit/:id',async(function*(req,res){
 }));
 
-router.post('/delete/:id',async(function*(req,res){
-
+router.get('/delete/:id',async(function*(req,res){
+    let freepost = yield Freepost.findById(req.params.id);
+    freepost.deleted = true;
+    try {
+        yield freepost.save();
+    } catch (err) {
+        console.log(err);
+    }
+    res.redirect('back');
 }));
 
 router.post('/addComment/:id/:uid',async(function(req,res){

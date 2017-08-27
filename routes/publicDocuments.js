@@ -17,7 +17,8 @@ router.get('/', is_user, async(function*(req, res){
         title: 'HELPi',
         user: req.user,
         folders: folders,
-        documents: documents,
+		documents: documents,
+		type: 'public',
     });
 }));
 
@@ -31,6 +32,7 @@ router.get('/:id', is_user, async(function*(req, res){
 		folders: folders,
 		documents: documents,
 		cur: curPath,
+		type: 'public',
 	});
 }));
 

@@ -17,6 +17,21 @@ block contents
                     .modal-footer
                         input(type="submit" value="Submit").btn.btn-default
                         button(data-dismiss="modal").btn.btn-default Close
+    //- div(role="dialog").modal.fade#editPost
+    //-     .modal-dialog
+    //-         .modal-content
+    //-             .modal-header
+    //-                 button(data-dismiss="modal").close &times;
+    //-                 h4.modal-title Post
+    //-             form(action="freepost/create" method="post")
+    //-                 .modal-body
+    //-                     label Title
+    //-                     input(type="text" name="title" value=post.title placeholder="Title").form-control
+    //-                     label Contents
+    //-                     textarea(name="contents" rows="20" style="resize: none;").form-control=post.contents
+    //-                 .modal-footer
+    //-                     input(type="submit" value="Submit").btn.btn-default
+    //-                     button(data-dismiss="modal").btn.btn-default Close
     #page-wrapper
         .container-fluid
             .row
@@ -35,15 +50,32 @@ block contents
                                 |  Freeboard
                     .PublicDocuments
                         each post in posts
-                            .container-fluid
-                                div(style="background-color:white;padding-bottom:20px;").border-r-5.row
-                                    .col-md-1.postleft
+                            .well
+                                .media
+                                    a.pull-left
                                         if(user.profileImage)
-                                            img(src=user.profileImage style="width:50%;height:50%;")
+                                            img(src=user.profileImage style="width:100px;height:100px;").media-object
                                         else
-                                            img(src="images/profile.png" style="width:50%;height:50%;")
-                                        br
-                                        label.text-pink=post.writer.username
-                                    .col-md-9.postright
-                                        label.text-pink=post.title
-                                        textarea(readonly="readonly" rows="6" style="resize: none;width:100%")=post.contents
+                                            img(src="images/profile.png" style="width:100px;height:100px;").media-object
+                                    .media-body
+                                        h4.media-heading=post.title
+                                        if(post.writer.id == user.id)
+                                            p.text-right By #{post.writer.username} 
+                                                //- a(data-toggle="modal" href="#editPost") 
+                                                //-     i.fa.fa-edit.text-pink
+                                                //-     | 
+                                                a(href="/freepost/delete/"+post.id onclick="if(confirm('삭제하시겠습니까?')==false){return false;}")
+                                                    i.fa.fa-trash.text-pink
+                                                    | 
+                                        else
+                                            p.text-right By #{post.writer.username}
+                                        p=post.contents
+                                        ul.list-inline.list-unstyled
+                                            li
+                                                span
+                                                    i.glyphicon.glyphicon-calendar
+                                                    |  #{post.getCreated()}
+                                            //- li |
+                                            //- span
+                                            //-     i.glyphicon.glyphicon-comment
+                                            //-     |  2 comments
