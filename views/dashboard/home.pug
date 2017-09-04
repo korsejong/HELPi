@@ -17,12 +17,14 @@ block contents
 						each folder in recent.folders
 							a(href='/'+folder.type+'Documents/'+folder.id)
 								.dc_fd
+									input(type="hidden" value=folder.id)
 									i.fa.fa-folder.f_text
 									| 
 									span.f_text #{folder.foldername}
 						each document in recent.documents
 							a(href='/'+document.type+'Documents/view/'+document.id target="_blank")
 								.dc_fl
+									input(type="hidden" value=document.id)
 									i.fa.fa-file.f_text
 									| 
 									span.f_text #{document.documentname}
@@ -46,28 +48,3 @@ block contents
 					.PublicDocuments
 						include ../part/list
 						+list('public',public.folders,public.documents)
-	script.
-		$('.PrivateDocuments').bind("contextmenu", function(event) { 
-			event.preventDefault();
-			$("div.custom-menu").hide();
-			$("<div class='custom-menu'>" +
-				"<ul class='nav'>" +
-				"<li><a class='text-pink' data-toggle='modal' href='#createFolderModal'><i class='fa fa-fw fa-folder'></i> Create Folder</a></li>" +
-				"<li><a class='text-pink' data-toggle='modal' href='#createDocumentModal'><i class='fa fa-fw fa-file'></i> Create Document</a></li></ul></div>")
-				.appendTo("body")
-				.css({top: event.pageY + "px", left: event.pageX + "px"});
-		}).bind("click", function(event) {
-			$("div.custom-menu").hide();
-		});
-		$('.PublicDocuments').bind("contextmenu", function(event) { 
-			event.preventDefault();
-			$("div.custom-menu").hide();
-			$("<div class='custom-menu'>" +
-				"<ul class='nav'>" +
-				"<li><a class='text-pink' data-toggle='modal' href='#createFolderModal'><i class='fa fa-fw fa-folder'></i> Create Folder</a></li>" +
-				"<li><a class='text-pink' data-toggle='modal' href='#createDocumentModal'><i class='fa fa-fw fa-file'></i> Create Document</a></li></ul></div>")
-				.appendTo("body")
-				.css({top: event.pageY + "px", left: event.pageX + "px"});
-		}).bind("click", function(event) {
-			$("div.custom-menu").hide();
-		});

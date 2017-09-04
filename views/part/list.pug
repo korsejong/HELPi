@@ -12,7 +12,8 @@ mixin list(type,folders,documents)
                         input(type="text" name="foldername" placeholder="Enter Folder Name").form-control.fdname
                         hr
                         label Add Users to share
-                        input(type="text" name="user" placeholder="Enter User ID").form-control
+                        input(type="text" name="user" placeholder="Enter User Name").form-control
+                        .userlist.list-group
                     .modal-footer
                         input(type="submit" value="Submit").btn.btn-default
                         button(data-dismiss="modal").btn.btn-default Close
@@ -29,7 +30,8 @@ mixin list(type,folders,documents)
                         input(type="text" name="documentname" placeholder="Enter Document Name").form-control.dcname
                         hr
                         label Add Users to share
-                        input(type="text" name="user" placeholder="Enter User ID").form-control
+                        input(type="text" name="user" placeholder="Enter User Name").form-control
+                        .userlist.list-group
                     .modal-footer
                         input(type="submit" value="Submit").btn.btn-default
                         button(data-dismiss="modal").btn.btn-default Close
@@ -48,11 +50,12 @@ mixin list(type,folders,documents)
     each folder in folders
         a(href='/'+type+'Documents/'+folder.id)
             .dc_fd
+                input(type="hidden" value=folder.id)
                 i.fa.fa-folder.f_text
                 | 
                 span.f_text #{folder.foldername}
         .dc_setting
-            a(data-toggle="modal" href="#settingFolderModal" data-fd-id=folder.id data-fd-name=folder.foldername)
+            a(data-toggle="modal" href="#settingFolderModal" data-id=folder.id)
                 i.fa.fa-gear.f_text.faiconsize
                 |  
             a(href="/folder/delete/"+folder.id onclick="if(confirm('삭제하시겠습니까?')==false){return false;}")
@@ -60,11 +63,12 @@ mixin list(type,folders,documents)
     each document in documents
         a(href='/'+type+'Documents/view/'+document.id target="_blank")
             .dc_fl
+                input(type="hidden" value=document.id)
                 i.fa.fa-file.f_text
                 | 
                 span.f_text #{document.documentname}
         .dc_setting
-            a(data-toggle="modal" href="#settingDocumentModal" data-dc-id=document.id data-dc-name=document.documentname)
+            a(data-toggle="modal" href="#settingDocumentModal" data-id=document.id)
                 i.fa.fa-gear.f_text.faiconsize
                 |  
             a(href="/document/delete/"+document.id onclick="if(confirm('삭제하시겠습니까?')==false){return false;}")

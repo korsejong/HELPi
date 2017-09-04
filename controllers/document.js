@@ -62,4 +62,9 @@ router.get('/delete/:id', async(function*(req,res){
     }
 }));
 
+router.get('/show/:id',async(function*(req,res){
+    let document = yield Document.findById(req.params.id).populate('owner').populate('partner');
+    res.send(document);
+}));
+
 module.exports = router;

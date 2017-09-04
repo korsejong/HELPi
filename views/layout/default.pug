@@ -221,19 +221,48 @@ html(lang='en')
                     };
                     reader.readAsDataURL(event.target.files[0]);
                 };
+                // get Modal data
                 $('#settingDocumentModal').on('show.bs.modal', function(e) {
                     var modal = $(this);
-                    var id = $(e.relatedTarget).data('dc-id');
-                    var name = $(e.relatedTarget).data('dc-name');
-                    modal.find('.dcid').val(id);
-                    modal.find('.dcname').val(name);
+                    var id = $(e.relatedTarget).data('id');
+                    $.ajax({
+                        type: 'get',
+                        url: '/document/show/'+id,
+                        data: id,
+                        success: function(document){
+                            modal.find('.dcid').val(id);
+                            modal.find('.dcname').val(document.documentname);
+                            modal.find('.userlist').append('<a class="list-group-item">Owner : '+document.owner.username+'</li>');
+                            document.partner.forEach(function(e){
+                                modal.find('.userlist').append('<a class="list-group-item">Partner : '+e.username+'</li>');
+                            })
+                        }
+                    });
+                });
+                $('#settingDocumentModal').on('hidden.bs.modal', function(e) {
+                    var modal = $(this);
+                    modal.find('.userlist').empty();
                 });
                 $('#settingFolderModal').on('show.bs.modal', function(e) {
                     var modal = $(this);
-                    var id = $(e.relatedTarget).data('fd-id');
-                    var name = $(e.relatedTarget).data('fd-name');
-                    modal.find('.fdid').val(id);
-                    modal.find('.fdname').val(name);
+                    var id = $(e.relatedTarget).data('id');
+                    $.ajax({
+                        type: 'get',
+                        url: '/folder/show/'+id,
+                        data: id,
+                        success: function(folder){
+                            modal.find('.fdid').val(id);
+                            modal.find('.fdname').val(folder.foldername);
+                            modal.find('.userlist').append('<a class="list-group-item">Owner : '+folder.owner.username+'</li>');
+                            folder.partner.forEach(function(e){
+                                modal.find('.userlist').append('<a class="list-group-item">Partner : '+e.username+'</li>');
+                            })
+                        }
+                    });
+                });
+                $('#settingFolderModal').on('hidden.bs.modal', function(e) {
+                    var modal = $(this);
+                    modal.find('.userlist').empty();
                 });
                 $('#searchUserModal').on('show.bs.modal', function() {
                     $("#keyword").keyup(function() {
@@ -243,3 +272,49 @@ html(lang='en')
                         $(temp).parent().show();
                     })
                 })
+                // contextmenu
+                $('.dc_fd').bind("contextmenu", function(event) { 
+                    event.preventDefault();
+                    $("div.custom-menu").hide();
+                    var ObjectId = $(this).find('input').val();
+                    $("<div class='custom-menu'>" +
+                        "<ul class='nav'>" +
+                        "<li><a class='text-pink' data-toggle='modal' data-id="+ObjectId+" href='#settingFolderModal' onclick=hideCustomMenu()><i class='fa fa-fw fa-gear'></i> Setting</a></li>" +
+                        "<li><a class='text-pink' href='/folder/delete/"+ObjectId+"' onclick='if(deleteConfirmMessage()==false){return false;}'><i class='fa fa-fw fa-trash'></i> Delete</a></li></ul></div>")
+                        .appendTo("body")
+                        .css({top: event.pageY + "px", left: event.pageX + "px"});
+                }).bind("click", function(event) {
+                    $("div.custom-menu").hide();
+                });
+                $('.dc_fl').bind("contextmenu", function(event) { 
+                    event.preventDefault();
+                    $("div.custom-menu").hide();
+                    var ObjectId = $(this).find('input').val();
+                    $("<div class='custom-menu'>" +
+                        "<ul class='nav'>" +
+                        "<li><a class='text-pink' data-toggle='modal' data-id="+ObjectId+" href='#settingDocumentModal' onclick=hideCustomMenu()><i class='fa fa-fw fa-gear'></i> Setting</a></li>" +
+                        "<li><a class='text-pink' href='/document/delete/"+ObjectId+"' onclick='if(deleteConfirmMessage()==false){return false;}'><i class='fa fa-fw fa-trash'></i> Delete</a></li></ul></div>")
+                        .appendTo("body")
+                        .css({top: event.pageY + "px", left: event.pageX + "px"});
+                }).bind("click", function(event) {
+                    $("div.custom-menu").hide();
+                });
+                $('.SpaceDiv').bind("contextmenu", function(event) { 
+                    event.preventDefault();
+                    $("div.custom-menu").hide();
+                    $("<div class='custom-menu'>" +
+                        "<ul class='nav'>" +
+                        "<li><a class='text-pink' data-toggle='modal' href='#createFolderModal' onclick=hideCustomMenu()><i class='fa fa-fw fa-folder'></i> Create Folder</a></li>" +
+                        "<li><a class='text-pink' data-toggle='modal' href='#createDocumentModal' onclick=hideCustomMenu()><i class='fa fa-fw fa-file'></i> Create Document</a></li></ul></div>")
+                        .appendTo("body")
+                        .css({top: event.pageY + "px", left: event.pageX + "px"});
+                }).bind("click", function(event) {
+                    $("div.custom-menu").hide();
+                });
+                function hideCustomMenu(){
+                    $("div.custom-menu").hide();
+                }
+                function deleteConfirmMessage(){
+                    hideCustomMenu();
+                    return confirm('삭제하시겠습니까?');
+                }
