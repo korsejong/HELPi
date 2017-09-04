@@ -174,7 +174,7 @@ html(lang='en')
                                     li
                                         a(data-toggle="modal" href="#createDocumentModal")
                                             i.fa.fa-fw.fa-file
-                                            |  Create Docuement
+                                            |  Create Document
                             li &nbsp;
                             li(class=dashboard)
                                 a(href='/dashboard')
@@ -221,13 +221,13 @@ html(lang='en')
                     };
                     reader.readAsDataURL(event.target.files[0]);
                 };
-                // get Modal data
+                // Setting Modal data
                 $('#settingDocumentModal').on('show.bs.modal', function(e) {
                     var modal = $(this);
                     var id = $(e.relatedTarget).data('id');
                     $.ajax({
                         type: 'get',
-                        url: '/document/show/'+id,
+                        url: '/document/get/'+id,
                         data: id,
                         success: function(document){
                             modal.find('.dcid').val(id);
@@ -248,7 +248,7 @@ html(lang='en')
                     var id = $(e.relatedTarget).data('id');
                     $.ajax({
                         type: 'get',
-                        url: '/folder/show/'+id,
+                        url: '/folder/get/'+id,
                         data: id,
                         success: function(folder){
                             modal.find('.fdid').val(id);
@@ -264,6 +264,7 @@ html(lang='en')
                     var modal = $(this);
                     modal.find('.userlist').empty();
                 });
+                // Search User jQuery
                 $('#searchUserModal').on('show.bs.modal', function() {
                     $("#keyword").keyup(function() {
                         var k = $(this).val();
@@ -272,7 +273,7 @@ html(lang='en')
                         $(temp).parent().show();
                     })
                 })
-                // contextmenu
+                // contextmenu - setting folder or document
                 $('.dc_fd').bind("contextmenu", function(event) { 
                     event.preventDefault();
                     $("div.custom-menu").hide();
@@ -299,6 +300,7 @@ html(lang='en')
                 }).bind("click", function(event) {
                     $("div.custom-menu").hide();
                 });
+                // contextmenu - new folder or document
                 $('.SpaceDiv').bind("contextmenu", function(event) { 
                     event.preventDefault();
                     $("div.custom-menu").hide();

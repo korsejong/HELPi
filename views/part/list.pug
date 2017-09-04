@@ -1,4 +1,5 @@
 mixin list(type,folders,documents)
+    //- setting folder modal
     div(role="dialog").modal.fade#settingFolderModal
         .modal-dialog
             .modal-content
@@ -14,9 +15,12 @@ mixin list(type,folders,documents)
                         label Add Users to share
                         input(type="text" name="user" placeholder="Enter User Name").form-control
                         .userlist.list-group
+                        label Delete Users
+                        input(type="text" name="delete_user" placeholder="Enter User Name").form-control
                     .modal-footer
                         input(type="submit" value="Submit").btn.btn-default
                         button(data-dismiss="modal").btn.btn-default Close
+    //- setting document modal
     div(role="dialog").modal.fade#settingDocumentModal
         .modal-dialog
             .modal-content
@@ -32,6 +36,8 @@ mixin list(type,folders,documents)
                         label Add Users to share
                         input(type="text" name="user" placeholder="Enter User Name").form-control
                         .userlist.list-group
+                        label Delete Users
+                        input(type="text" name="delete_user" placeholder="Enter User Name").form-control
                     .modal-footer
                         input(type="submit" value="Submit").btn.btn-default
                         button(data-dismiss="modal").btn.btn-default Close
@@ -47,6 +53,7 @@ mixin list(type,folders,documents)
                 i.fa.fa-folder.f_text
                 | 
                 span.f_text ../
+    //- folder list
     each folder in folders
         a(href='/'+type+'Documents/'+folder.id)
             .dc_fd
@@ -60,6 +67,7 @@ mixin list(type,folders,documents)
                 |  
             a(href="/folder/delete/"+folder.id onclick="if(confirm('삭제하시겠습니까?')==false){return false;}")
                 i.fa.fa-trash.f_text.faiconsize
+    //- document list
     each document in documents
         a(href='/'+type+'Documents/view/'+document.id target="_blank")
             .dc_fl

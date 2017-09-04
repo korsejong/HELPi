@@ -8,12 +8,14 @@ const express = require('express')
 const flash = require("req-flash");
 const session = require('express-session');
 
+// page router
 const index = require('../routes/index');
 const dashboard = require('../routes/dashboard');
 const privateDocuments = require('../routes/privateDocuments');
 const publicDocuments = require('../routes/publicDocuments');
 const freeboard = require('../routes/freeboard');
 
+// model controller
 const user = require('../controllers/user');
 const document = require('../controllers/document');
 const folder = require('../controllers/folder');
@@ -46,7 +48,7 @@ module.exports = function( app,passport ) {
     app.use('/publicDocuments',publicDocuments);
     app.use('/freeboard',freeboard);
 
-    //controller
+    // controller
     app.use('/user',user);
     app.use('/document',document);
     app.use('/folder',folder);

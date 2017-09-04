@@ -21,6 +21,7 @@ html(lang='en')
 	body
 		a#menu-toggle.btn.btn-pink.btn-lg.toggle(href='#')
 			i.fa.fa-bars
+		//- left sidebar menu
 		nav#sidebar-wrapper
 			ul.sidebar-nav
 				a#menu-close.btn.pull-right.toggle(href='#' style="color:white;")
@@ -35,6 +36,7 @@ html(lang='en')
 					a(href='#services', onclick='$("#menu-close").click();') Services
 				li
 					a(href='#contact', onclick='$("#menu-close").click();') Contact
+		//- section 1
 		header#top.header
 			.text-vertical-center
 				h1 HELPi
@@ -56,6 +58,7 @@ html(lang='en')
 								.form-group
 									input(type="submit" value="Log In" ).btn.btn-pink.form-control.border-r-5
 							a(href='#register' style="color:#222") 아직 HELPi 회원이 아니신가요?
+		//- section 2
 		section#register.header(style="background:url();")
 			.text-vertical-center.loginbackground
 				#regContainer.container
@@ -79,20 +82,22 @@ html(lang='en')
 								br
 								.form-group
 									input#register-submit.form-control.btn.btn-default(type='submit' value='Register Now')
+		//- section 3
 		section#about.about
 			.container
 				.row
-					.col-lg-12.text-center
+					.col-md-12.text-center
 						h2 Collaborate on your design documents with your team.
 						p.lead
 							| This site is available after you register,  
 							a(href='#signin') Do you want to register?
 							| .
 				img(src='/images/index2.jpg').img-responsive.img-rounded
+		//- section 4
 		section#services.services.bg-pink
 			.container
 				.row.text-center
-					.col-lg-10.col-lg-offset-1
+					.col-md-10.col-md-offset-1
 						h2 Our Services
 						hr(style="border-top:1px solid #222").small
 						.row
@@ -132,12 +137,14 @@ html(lang='en')
 										strong Design Document
 									p You can easily create difficult designs here.
 									//-a.btn.btn-light(href='#') Learn More
+		//- section 5
 		section#contact.map
 			iframe(width='100%', height='100%', frameborder='0', scrolling='no', marginheight='0', marginwidth='0', src='https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d2734.9365327649084!2d127.07907959511977!3d37.63000971717639!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sko!2skr!4v1499426375572')
+		//- footer contents
 		footer
 			.container
 				.row
-					.col-lg-10.col-lg-offset-1.text-center
+					.col-md-10.col-md-offset-1.text-center
 						h4
 							strong HELPi
 						p
@@ -181,7 +188,6 @@ html(lang='en')
 			}
 			password.onchange = validatePassword;
 			confirm_password.onkeyup = validatePassword;
-
 			// Closes the sidebar menu
 			$("#menu-close").click(function(e) {
 				e.preventDefault();
@@ -250,7 +256,7 @@ html(lang='en')
 					// Handle the mouse leave event
 					that.on('mouseleave', onMapMouseleaveHandler);
 				}
-				// Enable map zooming with mouse scroll when the user clicks the map
+			// Enable map zooming with mouse scroll when the user clicks the map
 			$('.map').on('click', onMapClickHandler);
 			$(function() {
 				$('#login-form-link').click(function(e) {

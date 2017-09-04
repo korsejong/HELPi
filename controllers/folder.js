@@ -8,6 +8,7 @@ const Folder = require("../models/folder");
 const Document = require("../models/document");
 const User = require("../models/user");
 
+// create folder
 router.post('/create', async(function*(req,res){
     let parent = null;
     if(req.body.path != '/')
@@ -34,13 +35,29 @@ router.post('/create', async(function*(req,res){
     res.redirect('back');
 }));
 
+// update folder - foldername or partner
 router.post('/update', async(function*(req,res){
     let folder = yield Folder.findById(req.body.fdid);
     folder.foldername = req.body.foldername;
-    let partner = yield User.findOne({username:req.body.user});
-    if(partner){
-        folder.partner.push(partner);
-        folder.type = 'public';
+    if(req.body.user){
+        let partner = yield User.findOne({username:req.body.user});
+        if(partner){
+            folder.partner.push(partner);
+            folder.type = 'public';
+            if(folder.contents.length != 0)
+                setContentsPublic(folder.contents,partner);
+        }
+    }
+    if(req.body.delete_user){
+        let deletePartner = yield User.findOne({username:req.body.delete_user});
+        if(deletePartner){
+            let idx = folder.partner.indexOf(deletePartner.id);
+            if(idx != -1)
+                folder.partner.splice(idx,1);
+            if(deletePartner && folder.contents.length != 0){
+                setContentsDeletePartner(folder.contents,deletePartner);
+            }
+        }
     }
     try{
         yield folder.save();
@@ -48,10 +65,10 @@ router.post('/update', async(function*(req,res){
         console.log(err);
         res.redirect('back');
     }
-    setContentsPublic(folder.contents,partner);
     res.redirect('back');
 }));
 
+// update sub-content of folder - add partner
 const setContentsPublic = function(contents,p){
     let partner = p;
     contents.documents.forEach(async(function*(id){
@@ -78,6 +95,38 @@ const setContentsPublic = function(contents,p){
     }));
 }
 
+// update sub-content of folder - delete partner
+const setContentsDeletePartner = function(contents,p){
+    let deletePartner = p;
+    contents.documents.forEach(async(function*(id){
+        let document = yield Document.findById(id);
+        document.type = 'public';
+        let idx = document.partner.indexOf(deletePartner.id);
+        if(idx != -1)
+            document.partner.splice(idx,1);
+        try{
+            yield document.save();
+        } catch(err) {
+            console.log(err);
+        }
+    }));
+    contents.folders.forEach(async(function*(id){
+        let folder = yield Folder.findById(id);
+        folder.type= 'public';
+        let idx = folder.partner.indexOf(deletePartner.id);
+        if(idx != -1)
+            folder.partner.splice(idx,1);
+        try{
+            yield folder.save();
+        } catch(err) {
+            console.log(err);
+        }
+        if(folder.contents.length != 0)
+            setContentsPublic(folder.contents,partner);
+    }));
+}
+
+// delete folder
 router.get('/delete/:id', async(function*(req,res){
     let folder = yield Folder.findById(req.params.id);
     folder.deleted = true;
@@ -90,7 +139,8 @@ router.get('/delete/:id', async(function*(req,res){
     }
 }));
 
-router.get('/show/:id',async(function*(req,res){
+// get folder information
+router.get('/get/:id',async(function*(req,res){
     let folder = yield Folder.findById(req.params.id).populate('owner').populate('partner');
     res.send(folder);
 }));

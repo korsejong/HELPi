@@ -10,6 +10,7 @@ const path = require('path');
 
 const User = require("../models/user");
 
+// Used to upload profile images
 const upload = multer({
     storage: multer.diskStorage({
         destination: (req, file, cb) => {
@@ -22,6 +23,7 @@ const upload = multer({
     })
 });
 
+// create user
 router.post('/create', async(function*(req,res){
     let user = new User({
         username: req.body.username,
@@ -39,6 +41,7 @@ router.post('/create', async(function*(req,res){
     }
 }));
 
+// signin user 
 router.post( '/signin', passport.authenticate('local', {
     failureRedirect: '/',
     failureFlash: true
@@ -51,6 +54,7 @@ router.get( '/signout', function(req,res){
     res.redirect('/')
 });
 
+// update user
 router.post('/update', upload.single('image'), async(function* (req, res) {
     let user = req.user;
     user.useremail = req.body.useremail;

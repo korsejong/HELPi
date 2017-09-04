@@ -24,8 +24,9 @@ module.exports = function( passport ){
         passReqToCallback: true,
         session: true
     }, function( req, id, pw, done ) {
-        //erase null string at head and taile
+        // erase null string at head and taile
         var trimStr = id.toString().trim();
+        // User search through user email
         User.findOne({ useremail: trimStr }, function (err, user) {
                 //'trimStr' has null string
                 if(trimStr.indexOf(" ") > 0){

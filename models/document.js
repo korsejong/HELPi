@@ -12,6 +12,7 @@ const documentSchema = new Schema({
     parent: {type: Schema.Types.ObjectId, ref: 'Folder'},
     path: String,
     deleted: { type: Boolean, default: false },
+    // document type ex) onepageproposal, usermanual, ...
     option: Number,
 },
     {

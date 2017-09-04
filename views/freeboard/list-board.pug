@@ -2,6 +2,7 @@ extends ../layout/default
 block header
     - var freeboard = 'active';
 block contents
+    //- create post madal
     div(role="dialog").modal.fade#createPost
         .modal-dialog
             .modal-content
@@ -35,7 +36,7 @@ block contents
     #page-wrapper
         .container-fluid
             .row
-                .col-lg-12
+                .col-md-12
                     h1(style="display:inline-block").page-header
                         | Freeboard
                     .upload
@@ -43,7 +44,7 @@ block contents
                             .pt_new
                                 i.fa.fa-edit
             .row
-                .col-lg-12
+                .col-md-12
                     ol.breadcrumb
                         li.active
                             i.fa.fa-edit

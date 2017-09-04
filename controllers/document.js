@@ -8,6 +8,7 @@ const Document = require("../models/document");
 const Folder = require("../models/folder");
 const User = require("../models/user");
 
+// create document
 router.post('/create', async(function*(req,res){
     let parent = null;
     if(req.body.path != '/')
@@ -36,13 +37,24 @@ router.post('/create', async(function*(req,res){
     }
 }));
 
+// update document - documentname or partner
 router.post('/update', async(function*(req,res){
     let document = yield Document.findById(req.body.dcid);
     document.documentname = req.body.documentname;
-    let partner = yield User.findOne({username:req.body.user});
-    if(partner){
-        document.partner.push(partner);
-        document.type = 'public';
+    if(req.body.user){
+        let partner = yield User.findOne({username:req.body.user});
+        if(partner){
+            document.partner.push(partner);
+            document.type = 'public';
+        }
+    }
+    if(req.body.delete_user){
+        let deletePartner = yield User.findOne({username:req.body.delete_user});
+        if(deletePartner){
+            let idx = document.partner.indexOf(deletePartner.id);
+            if(idx != -1)
+                document.partner.splice(idx,1);
+        }
     }
     try{
         yield document.save();
@@ -53,6 +65,7 @@ router.post('/update', async(function*(req,res){
     res.redirect('back');
 }));
 
+// delete document
 router.get('/delete/:id', async(function*(req,res){
     let document = yield Document.findById(req.params.id);
     document.deleted = true;
@@ -65,7 +78,8 @@ router.get('/delete/:id', async(function*(req,res){
     }
 }));
 
-router.get('/show/:id',async(function*(req,res){
+// get document information
+router.get('/get/:id',async(function*(req,res){
     let document = yield Document.findById(req.params.id).populate('owner').populate('partner');
     res.send(document);
 }));
