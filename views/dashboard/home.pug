@@ -21,6 +21,12 @@ block contents
 									i.fa.fa-folder.f_text
 									| 
 									span.f_text #{folder.foldername}
+							.setting
+								a(data-toggle="modal" href="#settingFolderModal" data-id=folder.id)
+									i.fa.fa-gear.f_text.faiconsize
+									|  
+								a(href="/folder/delete/"+folder.id onclick="if(confirm('삭제하시겠습니까?')==false){return false;}")
+									i.fa.fa-trash.f_text.faiconsize
 						each document in recent.documents
 							a(href='/'+document.type+'Documents/view/'+document.id target="_blank")
 								.dc_fl
@@ -28,6 +34,12 @@ block contents
 									i.fa.fa-file.f_text
 									| 
 									span.f_text #{document.documentname}
+							.setting
+								a(data-toggle="modal" href="#settingDocumentModal" data-id=document.id)
+									i.fa.fa-gear.f_text.faiconsize
+									|  
+								a(href="/document/delete/"+document.id onclick="if(confirm('삭제하시겠습니까?')==false){return false;}")
+									i.fa.fa-trash.f_text.faiconsize
 			hr
 			.row
 				.col-lg-12

@@ -285,7 +285,7 @@ a.text-white:focus {
     z-index:5;
     background-color:#fff;
 }
-.dc_setting{
+.setting{
     position:absolute;
     color: #fe4365; 
     right:45px;

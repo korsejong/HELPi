@@ -54,7 +54,7 @@ mixin list(type,folders,documents)
                 i.fa.fa-folder.f_text
                 | 
                 span.f_text #{folder.foldername}
-        .dc_setting
+        .setting
             a(data-toggle="modal" href="#settingFolderModal" data-id=folder.id)
                 i.fa.fa-gear.f_text.faiconsize
                 |  
@@ -67,7 +67,7 @@ mixin list(type,folders,documents)
                 i.fa.fa-file.f_text
                 | 
                 span.f_text #{document.documentname}
-        .dc_setting
+        .setting
             a(data-toggle="modal" href="#settingDocumentModal" data-id=document.id)
                 i.fa.fa-gear.f_text.faiconsize
                 |  
