@@ -20,11 +20,14 @@ router.post('/create', async(function*(req,res){
         parent: parent
     });
     try{
-        yield folder.save();
         if(req.body.path != '/'){
             parent.contents.folders.push(folder);
             yield parent.save();
+            if(parent.partner.length != 0){
+                folder.partner = parent.partner;
+            }
         }
+        yield folder.save();
     }catch(err){
         console.log(err);
     }

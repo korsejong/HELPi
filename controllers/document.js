@@ -21,11 +21,14 @@ router.post('/create', async(function*(req,res){
         option : req.body.docoption,
     });
     try{
-        yield document.save();
         if(req.body.path != '/'){
             parent.contents.documents.push(document);
             yield parent.save();
-        }  
+            if(parent.partner.length != 0){
+                document.partner = parent.partner;
+            }
+        }
+        yield document.save();  
         res.redirect('/privateDocuments/view/'+document.id);
     }catch(err){
         console.log(err);
