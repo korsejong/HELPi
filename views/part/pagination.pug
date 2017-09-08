@@ -1,0 +1,24 @@
+mixin pagination(page,pages)
+    ul.pagination
+        - var first = 5 * parseInt(page/5);
+        - var last = pages < first + 4 ? pages : first + 4;
+        - if(page>4)
+            li.page-item
+                a.page-link(href='/freeboard/'+parseInt(first-1), aria-label='Previous')
+                    span(aria-hidden='true') «
+                    span.sr-only Previous
+        - else
+            - last = 5;
+        - for(var i=first;i<page;i++)
+            li.page-item
+                a.page-link(href='/freeboard/'+i)=i+1
+        li.page-item.active
+            a.page-link(href='/freeboard/'+page)=page+1
+        - for(var i=page+1;i<last;i++)
+            li.page-item
+                a.page-link(href='/freeboard/'+i)=i+1
+        -if(last<pages)
+            li.page-item
+                a.page-link(href='/freeboard/'+parseInt(first+5), aria-label='Next')
+                    span(aria-hidden='true') »
+                    span.sr-only Next

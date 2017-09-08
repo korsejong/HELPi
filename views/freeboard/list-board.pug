@@ -9,7 +9,7 @@ block contents
                 .modal-header
                     button(data-dismiss="modal").close &times;
                     h4.modal-title Post
-                form(action="freepost/create" method="post")
+                form(action="/freepost/create" method="post")
                     .modal-body
                         label Title
                         input(type="text" name="title" placeholder="Title").form-control
@@ -50,6 +50,8 @@ block contents
                             i.fa.fa-edit
                                 |  Freeboard
                     .PublicDocuments
+                        input(type="hidden" value=page name="page")
+                        input(type="hidden" value=pages name="pages")
                         each post in posts
                             .well
                                 .media
@@ -80,3 +82,8 @@ block contents
                                             //- span
                                             //-     i.glyphicon.glyphicon-comment
                                             //-     |  2 comments
+            .row
+                .col-md-2
+                div(style="text-align:center;").col-md-6
+                    include ../part/pagination
+                    +pagination(page,pages)                   
