@@ -10,7 +10,7 @@ const is_user = common.requireAuthentication;
 
 router.get('/', is_user, async(function* (req, res) {
 	let page = 0;
-	let limit = 3;
+	let limit = 4;
 	let option = {
 		page: page,
 		limit: limit,
@@ -28,7 +28,7 @@ router.get('/', is_user, async(function* (req, res) {
 
 router.get('/:page', is_user, async(function* (req, res) {
 	let page = parseInt(req.params.page);
-	let limit = 3;
+	let limit = 4;
 	let option = {
 		page: page,
 		limit: limit,

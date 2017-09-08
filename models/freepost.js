@@ -31,7 +31,7 @@ freepostSchema.methods = {
 freepostSchema.statics = {
     list(option) {
         let page = option.page || 0;
-        let limit = option.limit || 3;
+        let limit = option.limit || 4;
         let sort = option.sort || '-created_at';
         return this.find({deleted:false}).sort(sort).limit(limit).skip(limit*page).populate('writer');
     },

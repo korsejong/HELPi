@@ -49,17 +49,17 @@ block contents
                         li.active
                             i.fa.fa-edit
                                 |  Freeboard
-                    .PublicDocuments
+                    .FreePostList
                         input(type="hidden" value=page name="page")
                         input(type="hidden" value=pages name="pages")
                         each post in posts
                             .well
                                 .media
                                     a.pull-left
-                                        if(user.profileImage)
-                                            img(src=user.profileImage style="width:100px;height:100px;").media-object
+                                        if(post.writer.profileImage)
+                                            img(src=post.writer.profileImage style="width:100px;height:100px;").media-object
                                         else
-                                            img(src="images/profile.png" style="width:100px;height:100px;").media-object
+                                            img(src="/images/profile.png" style="width:100px;height:100px;").media-object
                                     .media-body
                                         h4.media-heading=post.title
                                         if(post.writer.id == user.id)
