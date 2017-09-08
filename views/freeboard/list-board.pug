@@ -56,8 +56,8 @@ block contents
                             .well
                                 .media
                                     a.pull-left
-                                        if(user.profileImage)
-                                            img(src=user.profileImage style="width:100px;height:100px;").media-object
+                                        if(post.writer.profileImage)
+                                            img(src=post.writer.profileImage style="width:100px;height:100px;").media-object
                                         else
                                             img(src="/images/profile.png" style="width:100px;height:100px;").media-object
                                     .media-body
