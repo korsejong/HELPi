@@ -44,3 +44,12 @@ MongoDB v3.4.7
 "serve-favicon": "~2.4.2"
 
 "socket.io": "^2.0.3"
+
+# Run
+1. setting port number ( bin/www - const port = normalizePort(process.env.PORT || '8000') )
+
+2. run mongoDB
+
+2. npm install
+
+3. npm start
