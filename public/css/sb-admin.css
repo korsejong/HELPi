@@ -57,7 +57,7 @@ body {
     padding-top: 15px;
     padding-bottom: 15px;
     line-height: 20px;
-    color: #fe4365;
+    color: #011F38;
 }
 
 .top-nav>li>a:hover,
@@ -66,7 +66,7 @@ body {
 .top-nav>.open>a:hover,
 .top-nav>.open>a:focus {
     color: #fff;
-    background-color: #fe4365;
+    background-color: #011F38;
 }
 
 .top-nav>.open>.dropdown-menu {
@@ -149,11 +149,11 @@ ul.alert-dropdown {
     display: block;
     padding: 10px 15px 10px 38px;
     text-decoration: none;
-    color: #fe4365;
+    color: #011F38;
 }
 
 .side-nav>li>ul>li>a:hover {
-    color: #fe4365;
+    color: #011F38;
 }
 
 /* Flot Chart Containers */
@@ -233,20 +233,20 @@ ul.alert-dropdown {
     border-color:#FCE8D9;
 }
 .navbar-inverse .navbar-brand{
-    color:#fe4365;
+    color:#011F38;
 }
 .navbar-inverse .navbar-brand:hover,
 .navbar-inverse .navbar-brand:focus {
-  color: #fe4365;
+  color: #011F38;
   background-color: transparent;
 }
 /*side nav color*/
 .navbar-inverse .navbar-nav>li>a:focus, .navbar-inverse .navbar-nav>li>a:hover, .navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover{
     background-color: #FCE8D9;
-    color: #fe4365;
+    color: #011F38;
 }
 .navbar-inverse .navbar-nav>li>a{
-    color:#fe4365;   
+    color:#011F38;   
 }
 
 #page-wrapper{
@@ -262,11 +262,11 @@ h1{
 }
 
 .breadcrumb>.active{
-    color:#fe4365;
+    color:#011F38;
 }
 /*mini size*/
 .navbar-inverse .navbar-toggle{
-    border-color:#fe4365;
+    border-color:#011F38;
 }
 .navbar-inverse .navbar-toggle:hover{
     background-color:#fff;
@@ -275,5 +275,5 @@ h1{
     background-color:#fff;
 }
 .navbar-inverse .navbar-toggle .icon-bar{
-    background-color:#fe4365;
+    background-color:#011F38;
 }

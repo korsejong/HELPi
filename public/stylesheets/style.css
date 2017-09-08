@@ -144,7 +144,7 @@ a.text-white:focus {
 }
 
 .page-header{
-    color:#fe4365;
+    color:#011F38;
 }
 
 .dc_fd{
@@ -256,7 +256,7 @@ a.text-white:focus {
 .pt_new:hover,
 .pt_new:focus,
 .pt_new:active {
-    color:#fe4365;
+    color:#011F38;
 }
 
 .f_text {
@@ -264,7 +264,7 @@ a.text-white:focus {
     left:15px;
     top:15px;
     margin: 0 auto;
-    color: #fe4365;
+    color: #011F38;
     font-size: 15px;
 }
 .dc_tools{
@@ -287,7 +287,7 @@ a.text-white:focus {
 }
 .setting{
     position:absolute;
-    color: #fe4365; 
+    color: #011F38; 
     right:45px;
     display:inline-block;
 }
@@ -309,15 +309,15 @@ a.text-white:focus {
     z-index: 1000;
     position: absolute;
     background-color:#FFFAF0;
-    border: 1px solid #fe4365;
+    border: 1px solid #011F38;
 }
 .text-pink{
-    color: #fe4365;
+    color: #011F38;
 }
 .text-pink:hover,
 .text-pink:focus {
     outline: none;
-    color: #fe4365;
+    color: #011F38;
     background-color: #FCE8D9 !important;
 }
 .register-form{
