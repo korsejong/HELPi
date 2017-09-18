@@ -26,7 +26,8 @@ const userSchema = new Schema({
         deleted: { type: Boolean, default: false }
     }],
     //Encryption
-    salt: { type :String, default:null }
+    salt: { type :String, default:null },
+    deleted: { type: Boolean, default: false }
 });
 
 userSchema.pre('save', function(next){
@@ -47,5 +48,11 @@ userSchema.methods = {
     isExistPassword() {
         return (this.password !== undefined);
     },
+}
+
+userSchema.statics = {
+    list(){
+        return this.find({deleted:{$ne:true}});
+    }
 }
 module.exports = mongoose.model( 'User',userSchema);

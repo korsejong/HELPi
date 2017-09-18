@@ -72,5 +72,17 @@ router.post('/update', upload.single('image'), async(function* (req, res) {
     }
 }));
 
+router.get('/delete', async(function*(req,res){
+    let user = req.user;
+    user.deleted = true;
+    try {
+        yield user.save();
+    } catch (err) {
+        console.log(err);
+    }
+    req.logOut();
+    res.redirect('/');
+}))
+
 
 module.exports = router;

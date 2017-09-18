@@ -21,7 +21,7 @@ router.get('/', is_user, async(function*(req, res){
 		documents: yield Document.recentList(req.user),
 		folders: yield Folder.recentList(req.user)
 	};
-	others = yield User.find();
+	others = yield User.list();
 	res.render('dashboard/home', { 
 		title: 'HELPi',
 		user: req.user,

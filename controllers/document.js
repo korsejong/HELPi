@@ -42,14 +42,14 @@ router.post('/update', async(function*(req,res){
     let document = yield Document.findById(req.body.dcid);
     document.documentname = req.body.documentname;
     if(req.body.user){
-        let partner = yield User.findOne({username:req.body.user});
+        let partner = yield User.findOne({username:req.body.user,deleted:{$ne:true}});
         if(partner){
             document.partner.push(partner);
             document.type = 'public';
         }
     }
     if(req.body.delete_user){
-        let deletePartner = yield User.findOne({username:req.body.delete_user});
+        let deletePartner = yield User.findOne({username:req.body.delete_user,deleted:{$ne:true}});
         if(deletePartner){
             let idx = document.partner.indexOf(deletePartner.id);
             if(idx != -1)

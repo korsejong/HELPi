@@ -27,7 +27,7 @@ module.exports = function( passport ){
         // erase null string at head and taile
         var trimStr = id.toString().trim();
         // User search through user email
-        User.findOne({ useremail: trimStr }, function (err, user) {
+        User.findOne({ useremail: trimStr,deleted:{$ne:true} }, function (err, user) {
                 //'trimStr' has null string
                 if(trimStr.indexOf(" ") > 0){
                     return done(null, false, req.flash( 'message', '아이디에 공백이 포함 되었습니다.'));

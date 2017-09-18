@@ -102,6 +102,20 @@ html(lang='en')
                             .modal-footer
                                 input(type="submit" value="Update").btn.btn-default
                                 button(data-dismiss="modal").btn.btn-default Close
+            //- Account Modal
+            div(role="dialog").modal.fade#accountModal
+                .modal-dialog
+                    .modal-content
+                        .modal-header
+                            h4.modal-title Setting
+                        form(action="/user/delete")
+                            .modal-body
+                                .form-group
+                                    label Delete account
+                                    input(type="text" placeholder="삭제하시려면 이메일을 입력하세요." data-email=user.useremail value="")#user-account.form-control
+                            .modal-footer
+                                input(type="submit" value="Submit" onclick="if(confirm_email()==false){return false;}").btn.btn-default
+                                button(data-dismiss="modal").btn.btn-default Close
             //- Search User Modal
             div(role="dialog").modal.fade#searchUserModal
                 .modal-dialog
@@ -128,7 +142,7 @@ html(lang='en')
                                             td=user.username
                                             td=user.useremail
                                             td(align="center")
-                                                a(href="mailto:"+"sejong.400@gmail.com")
+                                                a(href="mailto:"+user.useremail)
                                                     i.fa.fa-envelope
                                             - n++;
                         .modal-footer
@@ -155,6 +169,10 @@ html(lang='en')
                                     a(data-toggle="modal" href="#profileModal" style="color: #fe4365;")
                                         i.fa.fa-fw.fa-user
                                         |  Profile
+                                li
+                                    a(data-toggle="modal" href="#accountModal" style="color: #fe4365;")
+                                        i.fa.fa-fw.fa-gear
+                                        |  Account
                                 li
                                     a(href='/user/signout' style="color: #fe4365;")
                                         i.fa.fa-fw.fa-power-off
@@ -201,18 +219,6 @@ html(lang='en')
         block footer
             //- modal script
             script.
-                // validatePassword
-                var password = document.getElementById("password")
-                var confirm_password = document.getElementById("confirm_password");
-                function validatePassword(){
-                    if(password.value != confirm_password.value) {
-                        confirm_password.setCustomValidity("Passwords Don't Match");
-                    } else {
-                        confirm_password.setCustomValidity('');
-                    }
-                }
-                password.onchange = validatePassword;
-                confirm_password.onkeyup = validatePassword;
                 var loadFile = function(event) {
                     var reader = new FileReader();
                     reader.onload = function(){
@@ -221,6 +227,30 @@ html(lang='en')
                     };
                     reader.readAsDataURL(event.target.files[0]);
                 };
+                var email = $("#user-account");
+                var useremail = $("#user-account");
+                function confirm_email(){
+                    if(email.val() == useremail.data('email')) return true;
+                    else{
+                        alert("Email Don't Match")
+                        return false;
+                    }
+                }
+                // Profile Modal
+                $('#profileModal').on('show.bs.modal', function(e) {
+                    // validatePassword
+                    var password = document.getElementById("password")
+                    var confirm_password = document.getElementById("confirm_password");
+                    function validatePassword(){
+                        if(password.value != confirm_password.value) {
+                            confirm_password.setCustomValidity("Passwords Don't Match");
+                        } else {
+                            confirm_password.setCustomValidity('');
+                        }
+                    }
+                    password.onchange = validatePassword;
+                    confirm_password.onkeyup = validatePassword;
+                });
                 // Setting Modal data
                 $('#settingDocumentModal').on('show.bs.modal', function(e) {
                     var modal = $(this);

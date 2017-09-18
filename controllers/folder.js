@@ -40,7 +40,7 @@ router.post('/update', async(function*(req,res){
     let folder = yield Folder.findById(req.body.fdid);
     folder.foldername = req.body.foldername;
     if(req.body.user){
-        let partner = yield User.findOne({username:req.body.user});
+        let partner = yield User.findOne({username:req.body.user,deleted:{$ne:true}});
         if(partner){
             folder.partner.push(partner);
             folder.type = 'public';
@@ -49,7 +49,7 @@ router.post('/update', async(function*(req,res){
         }
     }
     if(req.body.delete_user){
-        let deletePartner = yield User.findOne({username:req.body.delete_user});
+        let deletePartner = yield User.findOne({username:req.body.delete_user,deleted:{$ne:true}});
         if(deletePartner){
             let idx = folder.partner.indexOf(deletePartner.id);
             if(idx != -1)
