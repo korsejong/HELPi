@@ -1,5 +1,14 @@
 # HELPi
-Web services to help you write project design documents
+https://github.com/korsejong/HELPi/wiki
+
+# Run
+1. setting port number ( bin/www - const port = normalizePort(process.env.PORT || '8000') )
+
+2. run mongoDB
+
+2. npm install
+
+3. npm start
 
 # Environment
 Ubuntu 16.04 LTS / Windows 10
@@ -8,7 +17,7 @@ Node v6.11.0
 
 MongoDB v3.4.7
 
-# NPM
+# NPM LIST
 "body-parser": "~1.17.1"
 
 "co": "^4.6.0"
@@ -44,12 +53,3 @@ MongoDB v3.4.7
 "serve-favicon": "~2.4.2"
 
 "socket.io": "^2.0.3"
-
-# Run
-1. setting port number ( bin/www - const port = normalizePort(process.env.PORT || '8000') )
-
-2. run mongoDB
-
-2. npm install
-
-3. npm start
