@@ -18,21 +18,22 @@ block contents
                     .modal-footer
                         input(type="submit" value="Submit").btn.btn-default
                         button(data-dismiss="modal").btn.btn-default Close
-    //- div(role="dialog").modal.fade#editPost
-    //-     .modal-dialog
-    //-         .modal-content
-    //-             .modal-header
-    //-                 button(data-dismiss="modal").close &times;
-    //-                 h4.modal-title Post
-    //-             form(action="freepost/create" method="post")
-    //-                 .modal-body
-    //-                     label Title
-    //-                     input(type="text" name="title" value=post.title placeholder="Title").form-control
-    //-                     label Contents
-    //-                     textarea(name="contents" rows="20" style="resize: none;").form-control=post.contents
-    //-                 .modal-footer
-    //-                     input(type="submit" value="Submit").btn.btn-default
-    //-                     button(data-dismiss="modal").btn.btn-default Close
+    div(role="dialog").modal.fade#editPost
+        .modal-dialog
+            .modal-content
+                .modal-header
+                    button(data-dismiss="modal").close &times;
+                    h4.modal-title Post
+                form(action="/freepost/edit" method="post")
+                    input(type="hidden" name="postid").post-id
+                    .modal-body
+                        label Title
+                        input(type="text" name="title" ).form-control.post-title
+                        label Contents
+                        textarea(name="contents" rows="20" style="resize: none;").form-control.post-contents
+                    .modal-footer
+                        input(type="submit" value="Submit").btn.btn-default
+                        button(data-dismiss="modal").btn.btn-default Close
     #page-wrapper
         .container-fluid
             .row
@@ -64,9 +65,9 @@ block contents
                                         h4.media-heading=post.title
                                         if(post.writer.id == user.id)
                                             p.text-right By #{post.writer.username} 
-                                                //- a(data-toggle="modal" href="#editPost") 
-                                                //-     i.fa.fa-edit.text-pink
-                                                //-     | 
+                                                a(data-toggle="modal" href="#editPost" data-id=post.id) 
+                                                    i.fa.fa-edit.text-pink
+                                                    | 
                                                 a(href="/freepost/delete/"+post.id onclick="if(confirm('삭제하시겠습니까?')==false){return false;}")
                                                     i.fa.fa-trash.text-pink
                                                     | 
@@ -86,4 +87,19 @@ block contents
                 .col-md-2
                 div(style="text-align:center;").col-md-6
                     include ../part/pagination
-                    +pagination(page,pages)                   
+                    +pagination(page,pages)
+    script.
+        $('#editPost').on('show.bs.modal', function(e) {
+            var modal = $(this);
+            var id = $(e.relatedTarget).data('id');
+            $.ajax({
+                type: 'get',
+                url: '/freepost/get/'+id,
+                data: id,
+                success: function(post){
+                    modal.find('.post-title').val(post.title);
+                    modal.find('.post-contents').val(post.contents);
+                    modal.find('.post-id').val(id);
+                }
+            });
+        });                   
