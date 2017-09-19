@@ -97,7 +97,6 @@ router.post('/move/:id', async(function*(req,res){
     }catch(err){
         console.log(err);
     }
-    res.redirect('back');
 }));
 
 module.exports = router;

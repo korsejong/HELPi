@@ -95,9 +95,18 @@ mixin list(type,folders,documents)
             var target = ev.target.children[0].value;
             var type = ev.dataTransfer.getData("type");
             if(type=="document"){
-                $.post('/document/move/'+data,{ target: target });
+                $.ajax({
+                    url: '/document/move/'+data,
+                    type: 'POST',
+                    data: {target: target},
+                    success: location.reload()
+                });
             }else{
-                $.post('/folder/move/'+data,{ target: target });
+                $.ajax({
+                    url: '/folder/move/'+data,
+                    type: 'POST',
+                    data: {target: target},
+                    success: location.reload()
+                });
             }
-            location.reload();
         }
