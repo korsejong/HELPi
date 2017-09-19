@@ -84,4 +84,20 @@ router.get('/get/:id',async(function*(req,res){
     res.send(document);
 }));
 
+// move document
+router.post('/move/:id', async(function*(req,res){
+    let curDocument = yield Document.findById(req.params.id);
+    let targetFolder = yield Folder.findById(req.body.target);
+    targetFolder.contents.documents.push(curDocument);
+    curDocument.path = targetFolder.id;
+    curDocument.parent = targetFolder;
+    try{
+        yield curDocument.save();
+        yield tagetFolder.save();
+    }catch(err){
+        console.log(err);
+    }
+    res.redirect('back');
+}));
+
 module.exports = router;

@@ -140,9 +140,28 @@ router.get('/delete/:id', async(function*(req,res){
 }));
 
 // get folder information
-router.get('/get/:id',async(function*(req,res){
+router.get('/get/:id', async(function*(req,res){
     let folder = yield Folder.findById(req.params.id).populate('owner').populate('partner');
     res.send(folder);
+}));
+
+// move folder
+router.post('/move/:id', async(function*(req,res){
+    let curFolder = yield Folder.findById(req.params.id);
+    console.log(req.body);
+    console.log("-----------------");
+    console.log(req.body.target);
+    let targetFolder = yield Folder.findById(req.body.target);
+    targetFolder.contents.folders.push(curFolder);
+    curFolder.path = targetFolder.id;
+    curFolder.parent = targetFolder;
+    try{
+        yield curFolder.save();
+        yield tagetFolder.save();
+    }catch(err){
+        console.log(err);
+    }
+    res.redirect('back');
 }));
 
 module.exports = router;

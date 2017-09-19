@@ -56,7 +56,7 @@ mixin list(type,folders,documents)
     //- folder list
     each folder in folders
         a(href='/'+type+'Documents/'+folder.id)
-            .dc_fd
+            div(draggable="true" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)" data-type="folder").dc_fd
                 input(type="hidden" value=folder.id)
                 i.fa.fa-folder.f_text
                 | 
@@ -70,14 +70,34 @@ mixin list(type,folders,documents)
     //- document list
     each document in documents
         a(href='/'+type+'Documents/view/'+document.id target="_blank")
-            .dc_fl
+            div(draggable="true" ondragstart="drag(event)" data-type="document").dc_fl
                 input(type="hidden" value=document.id)
                 i.fa.fa-file.f_text
                 | 
                 span.f_text #{document.documentname}
-        .setting
-            a(data-toggle="modal" href="#settingDocumentModal" data-id=document.id)
-                i.fa.fa-gear.f_text.faiconsize
-                |  
-            a(href="/document/delete/"+document.id onclick="if(confirm('삭제하시겠습니까?')==false){return false;}")
-                i.fa.fa-trash.f_text.faiconsize
+            .setting
+                a(data-toggle="modal" href="#settingDocumentModal" data-id=document.id)
+                    i.fa.fa-gear.f_text.faiconsize
+                    |  
+                a(href="/document/delete/"+document.id onclick="if(confirm('삭제하시겠습니까?')==false){return false;}")
+                    i.fa.fa-trash.f_text.faiconsize
+    script.
+        function allowDrop(ev) {
+            ev.preventDefault();
+        }
+        function drag(ev) {
+            ev.dataTransfer.setData("id", ev.target.children[0].value);
+            ev.dataTransfer.setData("type", ev.target.getAttribute('data-type'));
+        }
+        function drop(ev) {
+            ev.preventDefault();
+            var data = ev.dataTransfer.getData("id");
+            var target = ev.target.children[0].value;
+            var type = ev.dataTransfer.getData("type");
+            if(type=="document"){
+                $.post('/document/move/'+data,{ target: target });
+            }else{
+                $.post('/folder/move/'+data,{ target: target });
+            }
+            location.reload();
+        }
