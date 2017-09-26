@@ -44,6 +44,7 @@ router.post('/update', async(function*(req,res){
         if(partner){
             folder.partner.push(partner);
             folder.type = 'public';
+            folder.path = '/';
             if(folder.contents.length != 0)
                 setContentsPublic(folder.contents,partner);
         }

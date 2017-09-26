@@ -46,6 +46,7 @@ router.post('/update', async(function*(req,res){
         if(partner){
             document.partner.push(partner);
             document.type = 'public';
+            document.path = '/';
         }
     }
     if(req.body.delete_user){

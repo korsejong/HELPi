@@ -20,7 +20,7 @@ router.get('/', is_user, async(function*(req, res){
 		documents: documents,
 		type: 'private',
 	});
-	}));
+}));
 
 router.get('/:id', is_user, async(function*(req, res){
 	let curPath = yield Folder.findById(req.params.id).populate('parent');
